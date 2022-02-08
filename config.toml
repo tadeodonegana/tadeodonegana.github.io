@@ -1,0 +1,126 @@
+baseURL = 'https://tadeodonegana.github.io/'
+languageCode = 'es-us'
+title = 'Tadeo Donegana'
+theme = "PaperMod"
+
+publishDir = "docs"
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+googleAnalytics = "UA-123-45"
+
+[outputs]
+home = [ "HTML", "RSS", "JSON" ]
+
+[minify]
+disableXML = true
+minifyOutput = true
+
+[params]
+env = "production"
+title = "Tadeo Donegana"
+description = "Pagina web de Tadeo Donegana"
+keywords = [ "Blog", "Portfolio", "Tech", "Programming", "Tadeo Donegana", "Data Science", "Engineering" ]
+author = "Tadeo Donegana"
+images = [ "<link or path of image for opengraph, twitter-cards>" ]
+DateFormat = "January 2, 2006"
+defaultTheme = "auto"
+disableThemeToggle = false
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = false
+disableSpecial1stPost = false
+disableScrollToTop = false
+comments = false
+hidemeta = false
+hideSummary = false
+showtoc = false
+tocopen = false
+
+  [params.assets]
+  favicon = "<link / abs url>"
+  favicon16x16 = "<link / abs url>"
+  favicon32x32 = "<link / abs url>"
+  apple_touch_icon = "<link / abs url>"
+  safari_pinned_tab = "<link / abs url>"
+
+  [params.label]
+  text = "Home"
+
+  [params.homeInfoParams]
+  Title = "Hello World 👋"
+  Content = "My name is *Tadeo Donegana Braunschweig* and I am a Systems Engineering student at [UNICEN](https://exa.unicen.edu.ar/). In this blog you will find posts about some stuff I am currently learning and some projects i have developed. If you want to know more about me please visit the [About](/about/) section."
+
+  [[params.socialIcons]]
+  name = "twitter"
+  url = "https://twitter.com/tadeodonegana"
+
+  [[params.socialIcons]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/tadeo-donegana-braunschweig/"
+
+  [[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/tadeodonegana"
+
+  [[params.socialIcons]]
+  name = "email"
+  url = "mailto:tadeodonegana@gmail.com"
+
+[params.analytics.google]
+SiteVerificationTag = "XYZabc"
+
+[params.analytics.bing]
+SiteVerificationTag = "XYZabc"
+
+[params.analytics.yandex]
+SiteVerificationTag = "XYZabc"
+
+  [params.cover]
+  hidden = true
+  hiddenInList = true
+  hiddenInSingle = true
+
+  [params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1_000
+  threshold = 0.4
+  minMatchCharLength = 0
+  keys = [ "title", "permalink", "summary", "content" ]
+
+[[menu.main]]
+identifier = "search"
+name = "Search"
+url = "/search/"
+weight = 10
+
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "archive"
+name = "Archive"
+url = "/archives/"
+weight = 30
+
+[[menu.main]]
+identifier = "resume"
+name = "Resume"
+url = "/resume/"
+weight = 40
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 50
