@@ -85,10 +85,10 @@ SiteVerificationTag = "XYZabc"
   hiddenInList = true
   hiddenInSingle = true
 
-  editPost:
-    URL: "https://github.com/tadeodonegana/tadeodonegana.github.io/tree/main/content/posts"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
+  [params.editPost]
+  URL = "https://github.com/tadeodonegana/tadeodonegana.github.io/tree/main/content"
+  Text = "Suggest Changes"
+  appendFilePath = true
 
   [params.fuseOpts]
   isCaseSensitive = false
