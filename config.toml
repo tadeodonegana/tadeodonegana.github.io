@@ -53,7 +53,7 @@ tocopen = false
 
   [params.homeInfoParams]
   Title = "Hello World 👋"
-  Content = "My name is *Tadeo Donegana Braunschweig* and I am a Systems Engineering student at [UNICEN](https://exa.unicen.edu.ar/). In this blog you will find posts about some stuff I am currently learning and some projects i have developed. If you want to know more about me please visit the [About](/about/) section."
+  Content = "My name is *Tadeo Donegana Braunschweig* and I am a Systems Engineering student at [UNICEN](https://exa.unicen.edu.ar/). In this blog you will find posts about some stuff I am currently learning and some projects i have developed. If you want to know more about me please visit the [About Me](/about-me/) section."
 
   [[params.socialIcons]]
   name = "twitter"
@@ -126,6 +126,6 @@ weight = 40
 
 [[menu.main]]
 identifier = "about"
-name = "About"
-url = "/about/"
+name = "About Me"
+url = "/about-me/"
 weight = 50
