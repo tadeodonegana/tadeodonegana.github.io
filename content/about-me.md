@@ -19,7 +19,7 @@ If you want to get in touch you can send me an email to *tadeodonegana[at]gmail[
 ### About Me
 My name is **Tadeo Donegana Braunschweig**, i was born and raised in a little town (~8000 habts.) near the center of the state of Buenos Aires in Argentina.
 
-![Argentina Game Show 2017](/tadeo_starwars.png "That is me with a group of Star Wars rebels in the 2017 Argentina Game Show.")
+![Argentina Game Show 2017](/img/tadeo_starwars.png "That is me with a group of Star Wars rebels in the 2017 Argentina Game Show.")
 
 Since i was a child i was always interested in Technology and Science, that interest led me to create a science blog called *'Todo Ciencia'* back in 2014 with only 13 years old. That was my first approach to the world of programming, despite that the blog was built using *Blogger*.
 
@@ -30,7 +30,7 @@ During my High School years i learned a lot of new things and i participated in 
 - [Todos podemos hacer un robot](https://lu32.com.ar/nota/68471/todos-podemos-hacer-un-robot) *(November 2018)* 
 - ["Esperanza I", la cara olavarriense en los Juegos Bonaerenses 2019](https://www.elpopular.com.ar/nota/-301812/2019/07/esperanza-i-la-cara-olavarriense-en-los-juegos-bonaerenses-2019) *(July 2019)* 
 
-![Sumo Robot competition at the 2018 Buenos Aires Science Fair](/sumo_robot.jpg "This picture was taken after a robot battle in the 2018 Buenos Aires Science Fair.")
+![Sumo Robot competition at the 2018 Buenos Aires Science Fair](/img/sumo_robot.jpg "This picture was taken after a robot battle in the 2018 Buenos Aires Science Fair.")
 
 Also in 2018 i decided to create a Youtube Channel to share some of the projects i was building using Arduino, i started uploading frequently and the channel started to grow. Nowadays that Youtube Channel called ['El Taller De TD'](https://www.youtube.com/c/ElTallerDeTD) has more than 13,000 suscribers and about 500,000 views. I still uploading content about programming, electronics and algorithms often, also *Hackaday* wrote about one of my projects, you can read the article here: 
 - [This Arduino feeds the dog](https://hackaday.com/2019/03/15/this-arduino-feeds-the-dog/) *(March 2019)*.
@@ -39,7 +39,7 @@ During the winter break of my last year of High School i created one of my most 
 
 [Ayumapp](https://play.google.com/store/apps/details?id=com.aplicacion.tadeo.prototipouno&hl=es_AR&gl=US) was a free mobile application with the aim to help homeless people from all around the globe. The main idea of the application is that users can add locations where they find cases of homelessness on the map, so that other users of the application can go to these places to help people. Users also can also add comments about whether there are any specific needs, for example whether there are children or animals.
 
-![Ayumapp](/ayumapp_and_me.jpg "Promotional picture as part of Ayumapp launch in 2019.")
+![Ayumapp](/img/ayumapp_and_me.jpg "Promotional picture as part of Ayumapp launch in 2019.")
 
 [Ayumapp](https://play.google.com/store/apps/details?id=com.aplicacion.tadeo.prototipouno&hl=es_AR&gl=US) has more than 10,000 downloads and it was used from all around the globe. Nowadays the app development is discontinued because of my university studies, but i want to continue developing it in a near future.
 
@@ -57,11 +57,11 @@ Also you can read more about Ayumapp's development on this *blog post (Coming so
 
 Also i have given several talks in events like [Arduino Day Quilmes 2019 Argentina](https://week.arduino.cc/), you can find those in the [media section](/about/#media-posts) of this post.
 
-![Tadeo Donegana Talk](/tadeo_talk.jpg "Giving a talk about my experiences in robotics competitions and my Youtube Channel as a part of a program to promote STEM fields between the youth. Circa 2018.")
+![Tadeo Donegana Talk](/img/tadeo_talk.jpg "Giving a talk about my experiences in robotics competitions and my Youtube Channel as a part of a program to promote STEM fields between the youth. Circa 2018.")
 
 After Ayumapp success, in 2020, I started studying Systems Engineering at the [Universidad Nacional del Centro de la Provincia de Buenos Aires (UNICEN)](https://www.unicen.edu.ar/). During this three years i have also participated into some academic projects, one of those is this open source [simple device for CO2 measurement](https://github.com/medicionco2/proyecto_medidor_co2), where i worked with Dr. Elias Todorovich and other collaborators. You can find more info about the project [here](https://exa.unicen.edu.ar/crean-un-medidor-de-dioxido-de-carbono-que-busca-concientizar-la-importancia-de-la-ventilacion-de-los-ambientes-para-evitar-la-propagacion-del-covid-19/). 
 
-![Tadeo Donegana 2022](/2022_tadeo.jpg "My first picture of 2022 🙉")
+![Tadeo Donegana 2022](/img/2022_tadeo.jpg "My first picture of 2022 🙉")
 
 At the moment i am a full time student and i like to develop some stuff from time to time, from Youtube videos to some cool software and hardware projects. I am also very interested in the Machine Learning and Data Science fields and also i really enjoy making coffee and playing video games 😃.
 

@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://tadeodonegana.github.io/sitemap.xml

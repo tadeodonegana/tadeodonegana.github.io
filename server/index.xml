@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tadeo Donegana</title>
+    <link>https://tadeodonegana.github.io/</link>
+    <description>Recent content on Tadeo Donegana</description>
+    <image>
+      <url>https://tadeodonegana.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://tadeodonegana.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Sun, 06 Feb 2022 13:43:55 -0300</lastBuildDate><atom:link href="https://tadeodonegana.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World!</title>
+      <link>https://tadeodonegana.github.io/posts/helloworld/</link>
+      <pubDate>Sun, 06 Feb 2022 13:43:55 -0300</pubDate>
+      
+      <guid>https://tadeodonegana.github.io/posts/helloworld/</guid>
+      <description>This is a test post just to say hello world!</description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>https://tadeodonegana.github.io/about-me/</link>
+      <pubDate>Sun, 06 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://tadeodonegana.github.io/about-me/</guid>
+      <description>Welcome to the &amp;#39;About Me&amp;#39; page 👋About Me (tl;dr) My name is Tadeo Donegana Braunschweig and I am a Systems Engineering student at UNICEN.
+Since i was a child i was always interested in tech and during my teenage i have developed some cool programming and educational projects (you can find more about them below).
+At the moment i am a full time student and i am very interested in the Machine Learning and Data Science fields.</description>
+    </item>
+    
+    <item>
+      <title>Resume</title>
+      <link>https://tadeodonegana.github.io/resume/</link>
+      <pubDate>Sun, 06 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://tadeodonegana.github.io/resume/</guid>
+      <description>Under Construction&amp;hellip;</description>
+    </item>
+    
+    
+    
+  </channel>
+</rss>
