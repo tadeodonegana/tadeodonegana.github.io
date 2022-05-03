@@ -47,7 +47,7 @@ weight = 40
 
 [languages.es]
 contentDir = "content/es"
-languageName = "Español"
+languageName = "Spanish"
 weight = 2
 DateFormat = "2006 January 2"
 
@@ -96,6 +96,7 @@ ShowBreadCrumbs = true
 ShowCodeCopyButtons = false
 disableSpecial1stPost = false
 disableScrollToTop = false
+displayFullLangName = true
 comments = false
 hidemeta = false
 hideSummary = false
