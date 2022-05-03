@@ -1,7 +1,8 @@
 baseURL = 'https://tadeodonegana.github.io/'
-languageCode = 'es-us'
 title = 'Tadeo Donegana'
 theme = "PaperMod"
+
+defaultContentLanguage = 'es'
 
 publishDir = "docs"
 
@@ -13,6 +14,66 @@ googleAnalytics = "UA-123-45"
 
 [outputs]
 home = [ "HTML", "RSS", "JSON" ]
+
+[languages.en]
+contentDir = "content/en"
+languageName = "English"
+weight = 1
+DateFormat = "January 2, 2006"
+
+[[languages.en.menu.main]]
+identifier = "search"
+name = "Search"
+url = "/search/"
+weight = 10
+
+[[languages.en.menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 20
+
+[[languages.en.menu.main]]
+identifier = "resume"
+name = "Resume"
+url = "/resume/"
+weight = 30
+
+[[languages.en.menu.main]]
+identifier = "about"
+name = "About Me"
+url = "/about-me/"
+weight = 40
+
+[languages.es]
+contentDir = "content/es"
+languageName = "Spanish"
+weight = 2
+DateFormat = "2006 January 2"
+
+[[languages.es.menu.main]]
+identifier = "search"
+name = "Buscar"
+url = "/buscar/"
+weight = 10
+
+[[languages.es.menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 20
+
+[[languages.es.menu.main]]
+identifier = "cv"
+name = "Curriculum Vitae"
+url = "/cv/"
+weight = 30
+
+[[languages.es.menu.main]]
+identifier = "about"
+name = "Sobre Mi"
+url = "/sobre-mi/"
+weight = 40
 
 [minify]
 disableXML = true
@@ -35,6 +96,7 @@ ShowBreadCrumbs = true
 ShowCodeCopyButtons = false
 disableSpecial1stPost = false
 disableScrollToTop = false
+displayFullLangName = true
 comments = false
 hidemeta = false
 hideSummary = false
@@ -96,34 +158,3 @@ SiteVerificationTag = "XYZabc"
   threshold = 0.4
   minMatchCharLength = 0
   keys = [ "title", "permalink", "summary", "content" ]
-
-[[menu.main]]
-identifier = "search"
-name = "Search"
-url = "/search/"
-weight = 10
-
-
-[[menu.main]]
-identifier = "tags"
-name = "Tags"
-url = "/tags/"
-weight = 20
-
-[[menu.main]]
-identifier = "archive"
-name = "Archive"
-url = "/archives/"
-weight = 30
-
-[[menu.main]]
-identifier = "resume"
-name = "Resume"
-url = "/resume/"
-weight = 40
-
-[[menu.main]]
-identifier = "about"
-name = "About Me"
-url = "/about-me/"
-weight = 50
