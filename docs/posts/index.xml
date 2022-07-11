@@ -11,12 +11,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 06 Feb 2022 13:43:55 -0300</lastBuildDate><atom:link href="https://tadeodonegana.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hola Mundo!</title>
+      <title>Hello World!</title>
       <link>https://tadeodonegana.github.io/posts/helloworld/</link>
       <pubDate>Sun, 06 Feb 2022 13:43:55 -0300</pubDate>
       
       <guid>https://tadeodonegana.github.io/posts/helloworld/</guid>
-      <description>Este es un post de ejemplo, hola mundo!</description>
+      <description>This is a test post just to say hello world!</description>
     </item>
     
   </channel>

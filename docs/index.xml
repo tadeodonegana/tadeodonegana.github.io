@@ -11,30 +11,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 06 Feb 2022 13:43:55 -0300</lastBuildDate><atom:link href="https://tadeodonegana.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hola Mundo!</title>
+      <title>Hello World!</title>
       <link>https://tadeodonegana.github.io/posts/helloworld/</link>
       <pubDate>Sun, 06 Feb 2022 13:43:55 -0300</pubDate>
       
       <guid>https://tadeodonegana.github.io/posts/helloworld/</guid>
-      <description>Este es un post de ejemplo, hola mundo!</description>
-    </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>https://tadeodonegana.github.io/sobre-mi/</link>
-      <pubDate>Sun, 06 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://tadeodonegana.github.io/sobre-mi/</guid>
-      <description>Welcome to the &amp;#39;About Me&amp;#39; page 👋About Me (tl;dr) Test</description>
-    </item>
-    
-    <item>
-      <title>Curriculum Vitae</title>
-      <link>https://tadeodonegana.github.io/cv/</link>
-      <pubDate>Sun, 06 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://tadeodonegana.github.io/cv/</guid>
-      <description>Under Construction&amp;hellip;</description>
+      <description>This is a test post just to say hello world!</description>
     </item>
     
     
