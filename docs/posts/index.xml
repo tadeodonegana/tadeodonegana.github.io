@@ -5,8 +5,8 @@
     <link>https://tadeodonegana.github.io/posts/</link>
     <description>Recent content in Posts on Tadeo Donegana</description>
     <image>
-      <url>https://tadeodonegana.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://tadeodonegana.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>https://tadeodonegana.github.io/img/blog-header.png</url>
+      <link>https://tadeodonegana.github.io/img/blog-header.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 06 Feb 2022 13:43:55 -0300</lastBuildDate><atom:link href="https://tadeodonegana.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
