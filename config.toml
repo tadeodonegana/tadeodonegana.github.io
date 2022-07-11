@@ -2,7 +2,7 @@ baseURL = 'https://tadeodonegana.github.io/'
 title = 'Tadeo Donegana'
 theme = "PaperMod"
 
-defaultContentLanguage = 'es'
+defaultContentLanguage = 'en'
 
 publishDir = "docs"
 
@@ -34,46 +34,10 @@ url = "/tags/"
 weight = 20
 
 [[languages.en.menu.main]]
-identifier = "resume"
-name = "Resume"
-url = "/resume/"
-weight = 30
-
-[[languages.en.menu.main]]
-identifier = "about"
-name = "About Me"
-url = "/about-me/"
-weight = 40
-
-[languages.es]
-contentDir = "content/es"
-languageName = "Spanish"
-weight = 2
-DateFormat = "2006 January 2"
-
-[[languages.es.menu.main]]
-identifier = "search"
-name = "Buscar"
-url = "/buscar/"
-weight = 10
-
-[[languages.es.menu.main]]
-identifier = "tags"
-name = "Tags"
-url = "/tags/"
-weight = 20
-
-[[languages.es.menu.main]]
 identifier = "cv"
-name = "Curriculum Vitae"
-url = "/cv/"
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/tadeo-donegana-braunschweig/"
 weight = 30
-
-[[languages.es.menu.main]]
-identifier = "about"
-name = "Sobre Mi"
-url = "/sobre-mi/"
-weight = 40
 
 [minify]
 disableXML = true
@@ -81,10 +45,10 @@ minifyOutput = true
 
 [params]
 env = "production"
-title = "Tadeo Donegana"
-description = "Pagina web de Tadeo Donegana"
+title = "Tadeo Donegana Braunschweig"
+description = "Tadeo Donegana's blog"
 keywords = [ "Blog", "Portfolio", "Tech", "Programming", "Tadeo Donegana", "Data Science", "Engineering" ]
-author = "Tadeo Donegana"
+author = "Tadeo Donegana Braunschweig"
 images = [ "<link or path of image for opengraph, twitter-cards>" ]
 DateFormat = "January 2, 2006"
 defaultTheme = "auto"
@@ -113,7 +77,7 @@ tocopen = false
 
   [params.homeInfoParams]
   Title = "Hello World 👋"
-  Content = "My name is *Tadeo Donegana Braunschweig* and I am a Systems Engineering student at [UNICEN](https://exa.unicen.edu.ar/). In this blog you will find posts about some stuff I am currently learning and some projects i have developed. If you want to know more about me please visit the [About Me](/about-me/) section."
+  Content = "My name is *Tadeo Donegana Braunschweig* and I am a B.S. in Artificial Intelligence student at the [University of Palermo](https://www.palermo.edu/). In this blog you will find posts about some stuff I am currently learning and some projects i have developed. I really enjoy meeting new people, feel free to  email me to tadeodonegana[at]gmail[dot]com."
 
   [[params.socialIcons]]
   name = "twitter"
