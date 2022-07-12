@@ -110,7 +110,7 @@ SiteVerificationTag = "XYZabc"
   hiddenInSingle = true
 
   [params.editPost]
-  URL = "https://github.com/tadeodonegana/tadeodonegana.github.io/tree/main/content"
+  URL = "https://github.com/tadeodonegana/tadeodonegana.github.io/tree/main/content/en"
   Text = "Suggest Changes"
   appendFilePath = true
 
