@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+
+import PageLayout from "@/layouts/Base";
+import tadeoImage from "@/assets/tadeo_lemon.jpg";
+
+const meta = {
+	title: "About",
+	description: "I'm a starter theme for Astro.build",
+};
+---
+
+<PageLayout meta={meta}>
+	<div class="space-y-6">
+		<h1 class="title">About</h1>
+		<p>
+			Machine Learning Developer at <a
+				class="cactus-link inline-block"
+				href="https://www.lemon.me/"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="github repository">Lemon</a
+			>. Bachelor’s degree student in AI and undergrad research assistant at the <a
+				class="cactus-link inline-block"
+				href="https://www.palermo.edu/"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="github repository">University of Palermo</a
+			>. Building cool stuff at <a
+				class="cactus-link inline-block"
+				href="https://www.flode.tech/"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="github repository">Flode</a
+			>. Passionate about problem-solving and learning new things.
+		</p>
+		<div class="flex justify-center grayscale hover:filter-none">
+			<Image src={tadeoImage} alt="Me" loading="eager" fetchpriority="high" />
+		</div>
+		<p>Experience:</p>
+		<ul class="list-inside list-disc">
+			<li>Aug. 2023 - Present · AI Developer @ Lemon</li>
+			<li>Jul. 2023 - Present · Research Assistant @ University of Palermo</li>
+			<li>Nov. 2022 - Jun. 2023 · Data Analyst @ KUDO</li>
+			<li>Oct. 2021 - Jan. 2022 · Student Advocate @ IBM</li>
+		</ul>
+		<p>
+			Find me on <a
+				class="cactus-link inline-block"
+				href="https://www.linkedin.com/in/tadeo-donegana-braunschweig/"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="github repository">LinkedIn</a
+			> or download my <a
+				class="cactus-link inline-block"
+				href="https://www.linkedin.com/in/tadeo-donegana-braunschweig/"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="github repository">Curriculum Vitae</a
+			> to learn more about my experience!
+		</p>
+	</div>
+</PageLayout>
