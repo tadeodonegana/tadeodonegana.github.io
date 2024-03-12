@@ -20,10 +20,10 @@
 		"rehype-external-links": "^3.0.0",
 		"satori": "0.10.11",
 		"satori-html": "^0.3.2",
-		"sharp": "^0.33.2"
+		"sharp": "^0.33.0"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.5.6",
+		"@astrojs/check": "^0.3.1",
 		"@pagefind/default-ui": "^1.0.4",
 		"@resvg/resvg-js": "^2.6.0",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
@@ -44,10 +44,10 @@
 		"pagefind": "^1.0.4",
 		"postcss": "^8.4.32",
 		"postcss-html": "^1.5.0",
-		"postcss-import": "^16.0.1",
+		"postcss-import": "^15.1.0",
 		"prettier": "^3.1.0",
 		"prettier-plugin-astro": "0.12.2",
-		"prettier-plugin-tailwindcss": "^0.5.11",
+		"prettier-plugin-tailwindcss": "^0.5.9",
 		"reading-time": "^1.5.0",
 		"remark-unwrap-images": "^4.0.0",
 		"tailwindcss": "^3.3.6",
