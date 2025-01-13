@@ -4,7 +4,7 @@ description: "This is a hello world test post for my blog. I'm gonna delete this
 publishDate: "16 December 2023"
 updatedDate: "16 December 2023"
 tags: ["test"]
-draft: false
+draft: true
 ---
 
 Hello world post
