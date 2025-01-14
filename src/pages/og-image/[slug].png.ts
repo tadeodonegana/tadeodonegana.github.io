@@ -30,16 +30,17 @@ const ogOptions: SatoriOptions = {
 };
 
 const markup = (title: string, pubDate: string) =>
-	html`<div tw="flex flex-col w-full h-full bg-[#1d1f21] text-[#c9cacc]">
+	html`<div tw="flex flex-col w-full h-full bg-[#1a202c] text-[#a0aec0]">
 		<div tw="flex flex-col flex-1 w-full p-10 justify-center">
-			<p tw="text-2xl mb-6">${pubDate}</p>
-			<h1 tw="text-6xl font-bold leading-snug text-white">${title}</h1>
+			<p tw="text-lg mb-4 italic text-[#718096]">${pubDate}</p>
+			<h1 tw="text-5xl font-extrabold leading-tight text-[#e2e8f0]">${title}</h1>
 		</div>
-		<div tw="flex items-center justify-between w-full p-10 border-t border-[#2bbc89] text-xl">
+		<div tw="flex items-center justify-between w-full p-8 border-t border-[#38b2ac] text-lg">
 			<div tw="flex items-center">
-				<p tw="ml-3 font-semibold">${siteConfig.title}</p>
+				<img src="${siteConfig.logoUrl}" alt="Site Logo" tw="w-10 h-10 rounded-full mr-3" />
+				<p tw="font-medium">${siteConfig.title}</p>
 			</div>
-			<p>by ${siteConfig.author}</p>
+			<p tw="text-[#81e6d9]">by ${siteConfig.author}</p>
 		</div>
 	</div>`;
 

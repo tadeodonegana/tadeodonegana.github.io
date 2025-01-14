@@ -6,11 +6,12 @@ export const siteConfig: SiteConfig = {
 	// Meta property used to construct the meta title property, found in src/components/BaseHead.astro L:11
 	title: "Tadeo Donegana Braunschweig",
 	// Meta property used as the default description meta property
-	description: "BSc in Artificial Intelligence",
+	description: "Machine learning engineer at Lemon Cash. Bachelor’s degree in AI",
 	// HTML lang property, found in src/layouts/Base.astro L:18
 	lang: "en-US",
 	// Meta property, found in src/components/BaseHead.astro L:42
 	ogLocale: "en_US",
+	logoUrl: "https://avatars.githubusercontent.com/u/75747222?v=4",
 	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
 	date: {
 		locale: "en-US",
