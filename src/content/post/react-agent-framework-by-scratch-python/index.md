@@ -1,21 +1,21 @@
 ---
 title: "ReAct Agent framework: Agents before they were cool"
 description: "In this blog post, we will implement the ReAct pattern in Python from scratch to understand how it works."
-publishDate: "12 Jan 2025"
-updatedDate: "12 Jan 2025"
+publishDate: "14 Jan 2025"
+updatedDate: "14 Jan 2025"
 tags: ["agents", "python", "gen-ai"]
 draft: false
 ---
 
 ## Introduction
 
-The **ReAct framework** is one of the earliest agentic approaches introduced in the literature. It combines **reasoning** (the thought process) and **action-taking** (executing specific functions) within an LLM to handle multifaceted tasks. This synergy enables LLMs to generate reasoning traces and task-specific actions, maintain and update action plans, handle exceptions, and interact with external sources for additional information.
+Agents are trending right now, but before all the hype, they had humble beginnings. The **ReAct framework** is one of the earliest agentic approaches introduced in the literature. It combines **reasoning** (the thought process) and **action-taking** (executing specific functions) within an LLM to handle multifaceted tasks. This synergy enables LLMs to generate reasoning traces and task-specific actions, maintain and update action plans, handle exceptions, and interact with external sources for additional information.
 
 ## Overview
 
-Agents are trending right now, but before all the hype, they had humble beginnings. The ReAct pattern was one of the first agentic models introduced in the literature. In the original paper[^1], the authors presented the idea of synergizing reasoning and action-taking in language models, making them more capable of handling several tasks.
+In the original paper[^1], the authors presented the idea of synergizing reasoning and action-taking in language models, making them more capable of handling several tasks.
 
-ReAct is inspired by the human ability to learn and make decisions by combining acting and reasoning. This framework enables LLMs to generate reasoning traces and task-specific actions, create and update action plans, handle exceptions, and interact with external sources for additional information.
+ReAct is inspired by the human ability to learn and make decisions by combining acting and reasoning.
 
 With this framework, you can implement additional actions that an LLM can take, such as running calculations or searching for specific information in a database, then teach it how to request that those actions are run, and finally feed the results back into the LLM.
 
@@ -39,7 +39,7 @@ If we query the model, using the ReAct framework, with the following:
 query("Fifteen * twenty five")
 ```
 
-The behavior, reasoning, and action of the agent will be something like this:
+The **behavior, reasoning, and action** of the agent will be something like this:
 
 ```
 Thought: The action required is a calculation
@@ -54,11 +54,11 @@ Returning the correct answer.
 
 ## Implementation from Scratch
 
-Now, let's dive deeper into how to implement this model from scratch using pure Python. Just as a disclaimer, this is not a very robust implementation, but it is a useful way to explain how the framework works at a low level.
+Now, let's dive deeper into how to implement this model from scratch using pure Python. Just as a disclaimer, *this is not a very robust implementation*, but it is a useful way to explain how the framework works at a low level.
 
 1. Defining the Agent Class
 
-The Agent class manages the three main responsibilities of an agent: capturing user messages, processing them, and producing answers.
+The Agent class manages the three main responsibilities of an agent: **capturing user messages, processing them, and producing answers**.
 
 ```py
 class Agent:
@@ -85,7 +85,7 @@ class Agent:
 
 2. Constructing the Main Prompt
 
-We will have two available actions for the model: calculate and `get_country_capitals`. In the master prompt, we include a few-shot prompt to teach the model how to act:
+We will have two available actions for the model: `calculate` and `get_country_capitals`. In the master prompt, we include a few-shot prompt to teach the model how to act:
 
 ```py
 prompt = """
@@ -146,7 +146,7 @@ known_actions = {
 
 4. Querying the Agent
 
-Now, let's create an agent and see how the thought and action steps work:
+Let's create an agent and see how the thought and action steps work:
 
 ```py
 agentOne = Agent(prompt)
@@ -168,7 +168,7 @@ We can also check the messages attribute to see the entire content that is being
 agentOne.messages
 ```
 
-Output:
+Output *(simplified)*:
 
 ```
 [{'role': 'system',  'content': "You run in a loop of Thought, Action, PAUSE, Observation..."}, {'role': 'user', 'content': "What's the capital of Argentina?"}, {'role': 'assistant',  'content': 'Thought: I should look up the capital of Argentina using get_country_capitals.\nAction: get_country_capitals: Argentina'}]
@@ -176,7 +176,7 @@ Output:
 
 5. Completing the ReAct Loop
 
-This is where the core part of the ReAct agent framework comes into play. We will define a loop that checks if the output contains an action. If it does, the loop calls the relevant function, appends the observation to the conversation, and allows the model to produce the final response.
+This is where the core part of the ReAct agent framework comes into play. We will define a loop that **checks if the output contains an action**. If it does, the loop calls the relevant function, appends the observation to the conversation, and allows the model to produce the final response.
 
 ```py
 action_re = re.compile('^Action: (\w+): (.*)$')
@@ -245,14 +245,16 @@ Observation: 2.0
 Answer: Two plus two, divided by two, equals 2.0.
 ```
 
-This is a simple, step-by-step implementation of the ReAct agent model in Python from scratch. In real-world scenarios, it is recommended to use more robust implementations, such as LangChain's ReAct version[^2].
+This is a simple, step-by-step implementation of the ReAct agent model in Python from scratch. In real-world scenarios, it is recommended to use more robust implementations, such as **LangChain's ReAct version**[^2].
 
-The full code can be found on this [Google Colab](https://colab.research.google.com/drive/1-ahi8kZN12l7_Xs2YiwWeGKhMgFSF1uP?usp=sharing).
+The **full code** can be found on this [Google Colab](https://colab.research.google.com/drive/1-ahi8kZN12l7_Xs2YiwWeGKhMgFSF1uP?usp=sharing).
 
 This post was inspired by the following resources:
 
 1. A simple Python implementation of the ReAct pattern for LLMs[^3].
 2. DeepLearning.ai AI Agents in LangGraph course[^4].
+
+Special thanks to my friend *J. Gavernet* for providing a thorough review of this post.
 
 [^1]: [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/pdf/2210.03629)
 
