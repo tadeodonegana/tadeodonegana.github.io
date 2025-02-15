@@ -37,8 +37,10 @@ export default defineConfig({
 	vite: {
 		plugins: [rawFonts([".ttf"])],
 		optimizeDeps: {
-			exclude: ["@resvg/resvg-js"],
+			noDiscovery: true,
+			include: undefined
 		},
+		exclude: ["@resvg/resvg-js"],
 	},
 });
 
