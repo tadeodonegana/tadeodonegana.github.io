@@ -38,9 +38,9 @@ export default defineConfig({
 		plugins: [rawFonts([".ttf"])],
 		optimizeDeps: {
 			noDiscovery: true,
-			include: undefined
-		},
-		exclude: ["@resvg/resvg-js"],
+			include: [],
+			exclude: ["@resvg/resvg-js"]
+		}
 	},
 });
 
