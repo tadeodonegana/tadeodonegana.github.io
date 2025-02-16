@@ -31,6 +31,23 @@ const { headings } = await post.render();
 				<slot />
 				<WebMentions />
 			</div>
+			<div class="giscus-comments">
+				<script src="https://giscus.app/client.js"
+					data-repo="tadeodonegana/tadeodonegana.github.io"
+					data-repo-id="R_kgDOLEyJAQ"
+					data-category="General"
+					data-category-id="DIC_kwDOLEyJAc4Cm_k6"
+					data-mapping="pathname"
+					data-strict="0"
+					data-reactions-enabled="0"
+					data-emit-metadata="0"
+					data-input-position="bottom"
+					data-theme="dark"
+					data-lang="es"
+					crossorigin="anonymous"
+					async>
+				</script>
+			</div>
 		</article>
 	</div>
 	<button
@@ -71,3 +88,11 @@ const { headings } = await post.render();
 	const observer = new IntersectionObserver(callback);
 	observer.observe(targetHeader);
 </script>
+
+<style>
+	.giscus-comments {
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 1px solid #333;
+	}
+</style>

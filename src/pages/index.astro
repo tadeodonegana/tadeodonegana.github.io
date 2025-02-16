@@ -7,29 +7,16 @@ import { getAllPosts, sortMDByDate } from "@/utils";
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
-// Projects section TBD
-const cactusTech: Array<{ title: string; desc: string; href: string }> = [
+
+// Commented out until Projects section is implemented
+/* const cactusTech: Array<{ title: string; desc: string; href: string }> = [
 	{
 		title: "vid2densepose",
 		desc: "Convert your videos to densepose and use it on MagicAnimate.",
 		href: "https://github.com/Flode-Labs/vid2densepose",
 	},
-	{
-		title: "¿Qué Propones?",
-		desc: "Ask presidential candidates about their proposals.",
-		href: "https://www.quepropones.com.ar/",
-	},
-	{
-		title: "welook-moments-scraper",
-		desc: "Scraper to download Welook POAP Moments from welook.io.",
-		href: "https://github.com/tadeodonegana/welook-moments-scraper",
-	},
-	{
-		title: "Took",
-		desc: "A twitter bot that tweets books.",
-		href: "https://github.com/tadeodonegana/took",
-	},
-];
+	// ... other projects
+]; */
 ---
 
 <PageLayout meta={{ title: "Home" }}>
@@ -42,7 +29,7 @@ const cactusTech: Array<{ title: string; desc: string; href: string }> = [
 				target="_blank"
 				rel="noopener noreferrer"
 				aria-label="github repository">Lemon Cash</a
-			>. Bachelor’s degree student in AI at the <a
+			>. Bachelor's degree student in AI at the <a
 				class="cactus-link inline-block"
 				href="https://www.palermo.edu/"
 				target="_blank"
