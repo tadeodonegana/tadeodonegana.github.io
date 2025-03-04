@@ -20,7 +20,7 @@ const meta = {
 				target="_blank"
 				rel="noopener noreferrer"
 				aria-label="github repository">Lemon Cash</a
-			>. Bachelor’s degree student in AI at the <a
+			>. Bachelor's degree student in AI at the <a
 				class="cactus-link inline-block"
 				href="https://www.palermo.edu/"
 				target="_blank"
@@ -37,13 +37,67 @@ const meta = {
 		<div class="flex justify-center grayscale hover:filter-none">
 			<Image src={tadeoImage} alt="Me" loading="eager" fetchpriority="high" />
 		</div>
-		<p>Experience:</p>
-		<ul class="list-inside list-disc">
-			<li>Aug. 2023 - Present · Machine Learning Developer @ Lemon</li>
-			<li>Jul. 2023 - Nov. 2024 · Research Assistant @ University of Palermo</li>
-			<li>Nov. 2022 - Jun. 2023 · Data Analyst @ KUDO</li>
-			<li>Oct. 2021 - Jan. 2022 · Student Advocate @ IBM</li>
-		</ul>
+		<p class="mb-4 text-xl font-semibold">Experience</p>
+		<div class="space-y-6">
+			{
+				[
+					{
+						startDate: "Aug 2023",
+						endDate: "Present",
+						role: "Software Engineer",
+						company: "Lemon",
+						//description:
+						//"Building and deploying ML models for fraud detection and risk assessment in the fintech industry. Working with Python, TensorFlow, and AWS.",
+					},
+					{
+						startDate: "Mar 2024",
+						endDate: "Present",
+						role: "Co-founder",
+						company: "RooMix",
+						//description:
+						//"Conducted research on deep learning applications in computer vision. Published papers on object detection and semantic segmentation.",
+					},
+					{
+						startDate: "Jul 2023",
+						endDate: "Nov 2024",
+						role: "Research Assistant",
+						company: "University of Palermo",
+						//description:
+						//	"Conducted research on deep learning applications in computer vision. Published papers on object detection and semantic segmentation.",
+					},
+					{
+						startDate: "Aug. 2022",
+						endDate: "Jun. 2023",
+						role: "Data Analyst",
+						company: "KUDO",
+						//description:
+						//	"Analyzed user behavior and platform metrics to improve service quality. Developed automated reporting systems using Python and SQL.",
+					},
+					{
+						startDate: "Oct. 2021",
+						endDate: "Jan. 2022",
+						role: "Student Advocate",
+						company: "IBM",
+						//description:
+						//"Promoted IBM Cloud and AI services within the academic community. Organized workshops and technical training sessions.",
+					},
+				].map((experience) => (
+					<div class="flex flex-col gap-2">
+						<div class="flex flex-col gap-2">
+							<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+								<span class="font-medium">
+									{experience.role} · <span class="text-accent">{experience.company}</span>
+								</span>
+								<span class="text-sm text-gray-500 dark:text-gray-400">
+									{experience.startDate} - {experience.endDate}
+								</span>
+							</div>
+							<p class="text-sm text-gray-600 dark:text-gray-300">{experience.description}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
 		<p>
 			Find me on <a
 				class="cactus-link inline-block"
