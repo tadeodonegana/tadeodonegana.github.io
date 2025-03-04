@@ -25,7 +25,7 @@ In this blog post, we will be developing a Jira MCP integration for Cursor, in o
 
 ### What is Smithery?
 
-[Smithery](https://smithery.ai/docs) is a platform that provides a registry of hosted MCP servers, simplifying the integration process. Instead of setting up an MCP server manually from scratch, we can leverage Smithery's ready-made solutions – for example, the **Jira-MCP server**. Smithery's Jira MCP server enables an AI to interact with Jira through standardized tools (including JQL issue search and issue detail retrieval). In other words, it's a pre-built MCP connector for Jira that we can plug into Cursor. Alternatively, you can host an equivalent MCP server locally and reference it from Cursor, but using Smithery's hosted server is often more convenient in terms of speed of implementation, though not necessarily in terms of security and customization, so take this into account.
+[Smithery](https://smithery.ai/docs) is a platform that provides a registry of hosted MCP servers, simplifying the integration process. Instead of setting up an MCP server manually from scratch, we can leverage Smithery's ready-made solutions – for example, the **Jira-MCP server**. Smithery's Jira MCP server enables an LLM to interact with Jira through standardized tools (including JQL issue search and issue detail retrieval). In other words, it's a pre-built MCP connector for Jira that we can plug into Cursor. Alternatively, you can host an equivalent MCP server locally and reference it from Cursor, but using Smithery's hosted server is often more convenient in terms of speed of implementation, though not necessarily in terms of security and customization, so take this into account.
 
 You can also search for other MCP-ready servers on the Smithery registry and try to include them in Cursor in the same way described in this blog post.
 
@@ -60,7 +60,7 @@ If everything was set up correctly, a green dot should appear next to the just i
 
 If any trouble is shown, please check your Jira credentials, or feel free to comment on this post to receive assistance.
 
-With the Jira MCP integrated, we can now prompt Cursor (Chat or Composer) to utilize this new capability. For instance, you might ask Cursor's AI to pull in information from Jira and act on it. Here's an example prompt:
+With the Jira MCP integrated, we can now prompt Cursor (Chat or Composer) to utilize this new capability. For instance, you might ask Cursor's to pull in information from Jira and act on it. Here's an example prompt:
 
 ```text
 Read my Jira tickets, specifically from a project called PLATFORM. Find tickets with the tag personal-web and implement them. My user is Tadeo Donegana Braunschweig.
@@ -74,17 +74,17 @@ Below, you can see a video under three minutes that shows the whole workflow of 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/v-aGrTd_JJo" title="MCP with Cursor Workflow" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-As you can see in the video, when you run the above prompt, the MCP server will leverage Jira's API to find the relevant tickets and feed their details into Cursor. In practice, this means Cursor's AI agent automatically receives the content of those Jira tickets as additional context for its code generation. The result is that Cursor can immediately suggest code implementations for the tasks described in your Jira tickets. You'll see the AI proposing solutions or code changes that address the issues, without having to copy-paste any ticket data yourself.
+As you can see in the video, when you run the above prompt, the MCP server will leverage Jira's API to find the relevant tickets and feed their details into Cursor. In practice, this means Cursor's AI agent automatically receives the content of those Jira tickets as additional context for its code generation. The result is that Cursor can immediately suggest code implementations for the tasks described in your Jira tickets.
 
 The result of the generated blog post is pretty accurate and follows the indications described on the Jira ticket. You can see the resulting pull request [here](https://github.com/tadeodonegana/tadeodonegana.github.io/pull/57).
 
 ### Current Limitations for this implementation
 
 1. **Manual Context in Prompt** – Currently, you might still need to hint at context in the prompt (like specifying project name or user) because Cursor doesn't automatically know which project or user to query. This could be improved by storing default project identifiers or user info in configuration (for example, in a `.cursorrules` file) so that even those details need not be typed out each time.
-2. **Detailed Jira Tickets Required** – The quality of the AI's suggestions depends on the detail in your Jira tickets. If the tickets lack clear descriptions or acceptance criteria, the code suggestions might be generic or require more refinement. Essentially, garbage in, garbage out – so ensure your Jira issues are well-described to get the best results.
+2. **Detailed Jira Tickets Required** – The quality of the suggestions depends on the detail in your Jira tickets. If the tickets lack clear descriptions or acceptance criteria, the code suggestions might be generic or require more refinement. Essentially, garbage in, garbage out – so ensure your Jira issues are well-described to get the best results.
 
 ## Conclusion
 
-Integrating **MCP with Cursor** unlocks powerful automation and productivity enhancements for developers. By leveraging **Smithery's hosted MCP servers** (or running your own), we can dynamically retrieve relevant information from external systems and incorporate it into our coding environment. In our example, Jira issue context is pulled in automatically, but this is just one use-case – the possibilities with MCP are broad. Despite some current limitations, the workflow is already greatly improved by not having to switch contexts or copy data manually. Future refinements will likely make the integration even more seamless, solidifying MCP as a game-changer for AI-assisted development.
+Integrating **MCP with Cursor** unlocks powerful automation and productivity enhancements for developers. By leveraging **Smithery's hosted MCP servers** (or running your own), we can dynamically retrieve relevant information from external systems and incorporate it into our coding environment. In our example, Jira issue context is pulled in automatically, but this is just one use-case – the possibilities with MCP are broad.
 
 For more details, visit the [Cursor documentation](https://docs.cursor.com/context/model-context-protocol) on MCP and context integration.
