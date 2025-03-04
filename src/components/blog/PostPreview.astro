@@ -10,6 +10,35 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 
 const { post, as: Tag = "div", withDesc = false } = Astro.props;
 const postDate = post.data.updatedDate ?? post.data.publishDate;
+
+// Process description to bold important words
+const keyTerms = [
+	"MCP",
+	"AI",
+	"Cursor",
+	"protocol",
+	"integration",
+	"productivity",
+	"automation",
+	"workflow",
+];
+const processDescription = (desc: string): string => {
+	return desc
+		.split(" ")
+		.map((word: string) => {
+			if (
+				keyTerms.some(
+					(term) => word.toLowerCase().includes(term.toLowerCase()) && word.length >= term.length,
+				)
+			) {
+				return `<strong>${word}</strong>`;
+			}
+			return word;
+		})
+		.join(" ");
+};
+
+const formattedDescription = withDesc ? processDescription(post.data.description) : "";
 ---
 
 <div class="flex flex-col">
@@ -17,7 +46,7 @@ const postDate = post.data.updatedDate ?? post.data.publishDate;
 		<FormattedDate date={postDate} class="min-w-[120px] text-gray-600 dark:text-gray-400" />
 		<Tag>
 			{post.data.draft && <span class="text-red-500">(Draft) </span>}
-			<a href={`/posts/${post.slug}/`} class="cactus-link" data-astro-prefetch>
+			<a href={`/posts/${post.slug}/`} class="cactus-link font-bold" data-astro-prefetch>
 				{post.data.title}
 			</a>
 		</Tag>
@@ -25,7 +54,7 @@ const postDate = post.data.updatedDate ?? post.data.publishDate;
 	{
 		withDesc && (
 			<div class="mt-2 pl-[120px]">
-				<q class="line-clamp-3 block italic">{post.data.description}</q>
+				<q class="line-clamp-3 block italic" set:html={formattedDescription} />
 			</div>
 		)
 	}
