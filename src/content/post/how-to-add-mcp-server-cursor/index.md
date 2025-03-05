@@ -1,10 +1,10 @@
 ---
 title: "MCP with Cursor: Improve development productivity"
 description: "Enhance your development workflow by integrating the Model Context Protocol (MCP) with Cursor. Automate Jira ticket implementation to optimize productivity."
-publishDate: "02 Mar 2025"
-updatedDate: "02 Mar 2025"
-tags: ["cursor", "mcp", "gen-ai", "agents", "ai-engineering"]
-draft: true
+publishDate: "04 Mar 2025"
+updatedDate: "04 Mar 2025"
+tags: ["cursor", "mcp", "gen-ai", "agents", "ai-engineering", "smithery", "model-context-protocol"]
+draft: false
 ---
 
 ## Introduction
