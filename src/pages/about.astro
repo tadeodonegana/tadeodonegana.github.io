@@ -14,7 +14,7 @@ const meta = {
 	<div class="space-y-6">
 		<h1 class="title">About</h1>
 		<p>
-			Machine Learning Developer at <a
+			Software Engineer at <a
 				class="cactus-link inline-block"
 				href="https://www.lemon.me/"
 				target="_blank"
@@ -26,13 +26,7 @@ const meta = {
 				target="_blank"
 				rel="noopener noreferrer"
 				aria-label="github repository">University of Palermo</a
-			>. Building cool stuff at <a
-				class="cactus-link inline-block"
-				href="https://www.flode.tech/"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="github repository">Flode</a
-			>. Passionate about problem-solving and learning new things.
+			>. Aspiring Artificial Intelligence Engineer.
 		</p>
 		<div class="flex justify-center grayscale hover:filter-none">
 			<Image src={tadeoImage} alt="Me" loading="eager" fetchpriority="high" />
@@ -46,40 +40,40 @@ const meta = {
 						endDate: "Present",
 						role: "Software Engineer",
 						company: "Lemon",
-						//description:
-						//"Building and deploying ML models for fraud detection and risk assessment in the fintech industry. Working with Python, TensorFlow, and AWS.",
+						description:
+							"I'm part of Lemon Cash's internal tooling team, where I design and develop robust end-to-end backend and frontend solutions for cross-functional teams. Also, I am responsible for the automation of internal processes by leveraging generative AI technologies, boosting operational efficiency.",
 					},
 					{
 						startDate: "Mar 2024",
 						endDate: "Present",
 						role: "Co-founder",
 						company: "RooMix",
-						//description:
-						//"Conducted research on deep learning applications in computer vision. Published papers on object detection and semantic segmentation.",
+						description:
+							'Empty rooms were killing sales, not anymore. <a href="https://roomix.ai/" target="_blank" rel="noopener noreferrer" class="cactus-link inline-block">roomix.ai</a>',
 					},
 					{
 						startDate: "Jul 2023",
 						endDate: "Nov 2024",
 						role: "Research Assistant",
 						company: "University of Palermo",
-						//description:
-						//	"Conducted research on deep learning applications in computer vision. Published papers on object detection and semantic segmentation.",
+						description:
+							"I was part of a research team focused on detecting cyber attacks—such as DDoS, DoS, and brute force attacks—using machine learning techniques.",
 					},
 					{
 						startDate: "Aug. 2022",
 						endDate: "Jun. 2023",
 						role: "Data Analyst",
 						company: "KUDO",
-						//description:
-						//	"Analyzed user behavior and platform metrics to improve service quality. Developed automated reporting systems using Python and SQL.",
+						description:
+							"I was responsible for developing several Tableau dashboards for various internal teams. I was also in charge of developing, maintaining, and deploying machine learning systems for the data science team.",
 					},
 					{
 						startDate: "Oct. 2021",
 						endDate: "Jan. 2022",
 						role: "Student Advocate",
 						company: "IBM",
-						//description:
-						//"Promoted IBM Cloud and AI services within the academic community. Organized workshops and technical training sessions.",
+						description:
+							"Four month intensive program designed to equip university students with the latest tools and techniques in fields such as Data Science, Machine Learning, Cloud, DevOps and more.",
 					},
 				].map((experience) => (
 					<div class="flex flex-col gap-2">
@@ -92,25 +86,59 @@ const meta = {
 									{experience.startDate} - {experience.endDate}
 								</span>
 							</div>
+							<p
+								class="text-xs text-gray-600 dark:text-gray-400"
+								set:html={experience.description}
+							/>
 						</div>
 					</div>
 				))
 			}
 		</div>
-		<p>
-			Find me on <a
-				class="cactus-link inline-block"
-				href="https://www.linkedin.com/in/tadeo-donegana-braunschweig/"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="github repository">LinkedIn</a
-			> or download my <a
-				class="cactus-link inline-block"
-				href="https://www.linkedin.com/in/tadeo-donegana-braunschweig/"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="github repository">Curriculum Vitae</a
-			> to learn more about my experience!
-		</p>
+		<p class="mb-4 text-xl font-semibold">Education</p>
+		<div class="space-y-6">
+			{
+				[
+					{
+						startDate: "Mar 2020",
+						endDate: "Dec 2025",
+						degree: "BSc in Artificial Intelligence",
+						institution: "University of Palermo",
+						description: "",
+					},
+				].map((education) => (
+					<div class="flex flex-col gap-2">
+						<div class="flex flex-col gap-2">
+							<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+								<span class="font-medium">
+									{education.degree} · <span class="text-accent">{education.institution}</span>
+								</span>
+								<span class="text-sm text-gray-500 dark:text-gray-400">
+									{education.startDate} - {education.endDate}
+								</span>
+							</div>
+							<p class="text-xs text-gray-600 dark:text-gray-400">{education.description}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+		<div class="mt-12">
+			<p>
+				Find me on <a
+					class="cactus-link inline-block"
+					href="https://www.linkedin.com/in/tadeo-donegana-braunschweig/"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="github repository">LinkedIn</a
+				> or download my <a
+					class="cactus-link inline-block"
+					href="https://www.linkedin.com/in/tadeo-donegana-braunschweig/"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="github repository">Curriculum Vitae</a
+				> to learn more about my experience!
+			</p>
+		</div>
 	</div>
 </PageLayout>

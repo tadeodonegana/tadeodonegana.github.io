@@ -4,9 +4,12 @@ export const siteConfig: SiteConfig = {
 	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
 	author: "Tadeo Donegana Braunschweig",
 	// Meta property used to construct the meta title property, found in src/components/BaseHead.astro L:11
-	title: "Tadeo Donegana Braunschweig",
+	title: "Tadeo Donegana Braunschweig - Software Engineer",
 	// Meta property used as the default description meta property
-	description: "Machine learning engineer at Lemon Cash. Bachelor’s degree in AI",
+	description:
+		"I am Tadeo Donegana Braunschweig, a software engineer currently working at Lemon Cash. " +
+		"I am also pursuing a bachelor's degree in AI at the University of Palermo. " +
+		"Here, I like to talk about artificial intelligence and engineering in general.",
 	// HTML lang property, found in src/layouts/Base.astro L:18
 	lang: "en-US",
 	// Meta property, found in src/components/BaseHead.astro L:42
