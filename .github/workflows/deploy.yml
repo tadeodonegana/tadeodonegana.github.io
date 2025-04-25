@@ -29,9 +29,6 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Install sharp
-        run: pnpm add sharp
-
       - name: Install dependencies
         run: pnpm install
 
