@@ -233,7 +233,7 @@ Note your EC2 Public IPv4 address:
 
 ![@EC2 public Ipv4 Address](./images/10.png "EC2 public Ipv4 Address")
 
-## 3. Testing Remote MCP Server
+### 3. Testing Remote MCP Server
 
 We'll use Claude Desktop as the client for testing. Update `claude_desktop_config.json`:
 
