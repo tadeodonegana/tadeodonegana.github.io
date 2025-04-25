@@ -45,9 +45,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install Linux-specific resvg binary
-        run: pnpm add @resvg/resvg-js-linux-x64-gnu
-
         # use astro check for issues
       - name: Run check
         run: pnpm astro check
