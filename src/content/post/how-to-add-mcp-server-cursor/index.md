@@ -66,7 +66,7 @@ With the Jira MCP integrated, we can now prompt Cursor (Chat or Composer) to uti
 Read my Jira tickets, specifically from a project called PLATFORM. Find tickets with the tag personal-web and implement them. My user is Tadeo Donegana Braunschweig.
 ```
 
-This prompt instructs the AI agent to retrieve Jira issues from the *PLATFORM* project that are tagged *personal-web* (assigned to the user Tadeo Donegana Braunschweig), and then implement them. 
+This prompt instructs the AI agent to retrieve Jira issues from the _PLATFORM_ project that are tagged _personal-web_ (assigned to the user Tadeo Donegana Braunschweig), and then implement them.
 
 ### Expected Output
 

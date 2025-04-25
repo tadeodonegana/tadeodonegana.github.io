@@ -39,8 +39,8 @@ export default defineConfig({
 		optimizeDeps: {
 			noDiscovery: true,
 			include: [],
-			exclude: ["@resvg/resvg-js"]
-		}
+			exclude: ["@resvg/resvg-js"],
+		},
 	},
 });
 

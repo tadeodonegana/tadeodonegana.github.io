@@ -20,6 +20,7 @@ ReAct is inspired by the human ability to learn and make decisions by combining 
 With this framework, you can implement additional actions that an LLM can take, such as running calculations or searching for specific information in a database, then teach it how to request that those actions are run, and finally feed the results back into the LLM.
 
 ![@ReAct_image.png](./ReAct_image.png "ReAct Agent Model")
+
 <div style="text-align: center;">
 This diagram illustrates the interaction between the Agent, LLM, Tools, and the Environment in the ReAct framework.
 </div>
@@ -54,7 +55,7 @@ Returning the correct answer.
 
 ## Implementation from Scratch
 
-Now, let's dive deeper into how to implement this model from scratch using pure Python. Just as a disclaimer, *this is not a very robust implementation*, but it is a useful way to explain how the framework works at a low level.
+Now, let's dive deeper into how to implement this model from scratch using pure Python. Just as a disclaimer, _this is not a very robust implementation_, but it is a useful way to explain how the framework works at a low level.
 
 1. Defining the Agent Class
 
@@ -168,7 +169,7 @@ We can also check the messages attribute to see the entire content that is being
 agentOne.messages
 ```
 
-Output *(simplified)*:
+Output _(simplified)_:
 
 ```
 [{'role': 'system',  'content': "You run in a loop of Thought, Action, PAUSE, Observation..."}, {'role': 'user', 'content': "What's the capital of Argentina?"}, {'role': 'assistant',  'content': 'Thought: I should look up the capital of Argentina using get_country_capitals.\nAction: get_country_capitals: Argentina'}]
@@ -254,19 +255,9 @@ This post was inspired by the following resources:
 1. A simple Python implementation of the ReAct pattern for LLMs[^3].
 2. DeepLearning.ai AI Agents in LangGraph course[^4].
 
-Special thanks to my friend *J. Gavernet* for providing a thorough review of this post.
+Special thanks to my friend _J. Gavernet_ for providing a thorough review of this post.
 
 [^1]: [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/pdf/2210.03629)
-
 [^2]: [ReAct: Langchain documentation](https://python.langchain.com/v0.1/docs/modules/agents/agent_types/react/)
-
 [^3]: [A simple Python implementation of the ReAct pattern for LLMs](https://til.simonwillison.net/llms/python-react-pattern)
-
 [^4]: [DeepLearning.ai AI Agents in LangGraph](https://learn.deeplearning.ai/courses/ai-agents-in-langgraph/lesson/3/langgraph-components)
-
-
-
-
-
-
-

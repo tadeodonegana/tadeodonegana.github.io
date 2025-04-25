@@ -97,10 +97,10 @@ server.tool(
           }
         }
       );
-      
+
       // Create a simple text report of search results
       let resultText = `Search results for: ${args.query}\n\n`;
-      
+
       // Add web results
       if (response.data.organic) {
         resultText += "Web Results:\n";
@@ -110,7 +110,7 @@ server.tool(
           resultText += `   ${result.snippet}\n\n`;
         });
       }
-      
+
       // Return the results as text content
       return {
         content: [{ type: "text", text: resultText }]
@@ -134,7 +134,7 @@ app.get("/sse", async (req: Request, res: Response) => {
   const transport = new SSEServerTransport("/messages", res);
   transports[transport.sessionId] = transport;
   // Store the provided API key (or empty string if missing) for this session
-  sessionApiKeys[transport.sessionId] = apiKey || ""; 
+  sessionApiKeys[transport.sessionId] = apiKey || "";
 
   console.log(`SSE session started: ${transport.sessionId}`);
 
@@ -179,11 +179,11 @@ Follow these steps to launch your MCP server:
 #### Create an EC2 instance
 
 - Launch a new EC2 Instance via the EC2 Dashboard
-![@Launch a EC2 instance](./images/1.png "Launch a EC2 instance")
+  ![@Launch a EC2 instance](./images/1.png "Launch a EC2 instance")
 - Choose Ubuntu AMI and a `t2.micro` instance.
-![@Choose the AMI](./images/2.png "Choose the AMI")
+  ![@Choose the AMI](./images/2.png "Choose the AMI")
 - Generate or select an existing key pair.
-![@Choose a key pair](./images/3.png "Choose a key pair")
+  ![@Choose a key pair](./images/3.png "Choose a key pair")
 
 #### Connect and setup dependencies
 
@@ -237,24 +237,24 @@ We'll use Claude Desktop as the client for testing. Update `claude_desktop_confi
 
 ```json
 {
-  "mcpServers": {
-    "searchMCP": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "http://[your-ec2-ip]:3000/sse",
-        "--allow-http",
-        "--header",
-        "X-Serper-Api-Key:[YOUR_SERPER_API_KEY]"
-      ]
-    }
-  }
+	"mcpServers": {
+		"searchMCP": {
+			"command": "npx",
+			"args": [
+				"mcp-remote",
+				"http://[your-ec2-ip]:3000/sse",
+				"--allow-http",
+				"--header",
+				"X-Serper-Api-Key:[YOUR_SERPER_API_KEY]"
+			]
+		}
+	}
 }
 ```
 
 For this particular implementation, we are using [`mcp-remote`](https://www.npmjs.com/package/mcp-remote), an npm package designed to connect MCP clients—which originally support only local communication (via STDIO)—to remote MCP servers using SSE, including support for authentication headers.
 
-In our configuration, we pass the API key through a custom HTTP header (`X-Serper-Api-Key`). This approach is necessary because each client connection requires a unique credential, making environment variables unsuitable for authentication in remote SSE setups. 
+In our configuration, we pass the API key through a custom HTTP header (`X-Serper-Api-Key`). This approach is necessary because each client connection requires a unique credential, making environment variables unsuitable for authentication in remote SSE setups.
 
 It's important to note that, at the time of writing, MCP does not natively support authentication methods. Therefore, using custom HTTP headers is a practical workaround but might pose security risks in production environments. We will cover these security considerations more thoroughly in a later section of this post.
 
@@ -275,10 +275,12 @@ Let's try with the prompt: "Search the web for Tandil, Buenos Aires"
 SSE just works, but is it good enough for production in complex environments?
 
 **Pros:**
+
 - Easy setup and quick deployment.
 - Real-time, bidirectional communication.
 
 **Cons:**
+
 - Occasional connection drops.
 - Difficult scalability (connection bottlenecks).
 - Firewall restrictions.
