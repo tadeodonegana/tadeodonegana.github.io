@@ -1,4 +1,4 @@
-import type { Root } from 'mdast';
+import type { Root } from "mdast";
 import getReadingTime from "reading-time";
 import { toString } from "mdast-util-to-string";
 

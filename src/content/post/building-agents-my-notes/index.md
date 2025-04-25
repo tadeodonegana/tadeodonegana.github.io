@@ -10,7 +10,7 @@ draft: false
 Anthropic’s [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) post shares, in my honest opinion, some of the most important insights when building agents. Usually, I find myself re-reading and referring back to this blog post in order to recommend it to someone new or to find new ideas and guidelines.
 
 Below are some of my personal notes on the points that I find important, worth remembering, and that I try to apply when building agents in my day-to-day job.
- 
+
 ## Workflows vs. Agents
 
 Workflows and agents serve distinct purposes in system design. Workflows operate on fixed, predefined paths, making them ideal for tasks where every step is known in advance. Agents, however, are designed to determine their own course of action, adapting dynamically based on feedback from their environment. This distinction is crucial when deciding the approach for a given problem.
