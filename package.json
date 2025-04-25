@@ -23,6 +23,9 @@
 		"satori-html": "^0.3.2",
 		"sharp": "^0.33.0"
 	},
+	"optionalDependencies": {
+		"@resvg/resvg-js-linux-x64-gnu": "^2.6.0"
+	},
 	"devDependencies": {
 		"@astrojs/check": "^0.3.1",
 		"@pagefind/default-ui": "^1.0.4",
