@@ -42,9 +42,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install VIPS dev library
-        run: sudo apt-get update && sudo apt-get install -y libvips-dev
-
       - name: Install dependencies
         run: pnpm install
 
