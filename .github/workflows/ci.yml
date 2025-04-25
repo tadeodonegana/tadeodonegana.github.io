@@ -42,6 +42,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      - name: Install sharp
+        run: pnpm add sharp
+
       - name: Install dependencies
         run: pnpm install
 
