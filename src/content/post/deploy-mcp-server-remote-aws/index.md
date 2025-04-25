@@ -32,8 +32,6 @@ The Model Context Protocol supports two transport mechanisms:
 
 When hosting remotely, SSE is preferred. Clients initiate HTTP POST requests, and the server streams back responses, maintaining a long-lived connection to send ongoing updates.
 
-![@SSE Animation](./images/ssemcp.svg "SSE Animation")
-
 We will discuss more about SSE, STDIO, and the recently introduced HTTP transport option in future posts.
 
 ## Hosting an MCP Server on AWS EC2
