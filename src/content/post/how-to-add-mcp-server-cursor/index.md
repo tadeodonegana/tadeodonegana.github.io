@@ -4,7 +4,7 @@ description: "Enhance your development workflow by integrating the Model Context
 publishDate: "04 Mar 2025"
 updatedDate: "04 Mar 2025"
 tags: ["cursor", "mcp", "gen-ai", "agents", "ai-engineering", "smithery", "model-context-protocol"]
-draft: false
+draft: true
 ---
 
 ## Introduction
