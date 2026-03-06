@@ -1,5 +1,5 @@
 ---
-title: "I built a CLI to manage my Tiendanube store with Langchain Deep Agents"
+title: "Building a Store Management CLI with Langchain Deep Agents"
 description: "I built a CLI to manage my Tiendanube store with Langchain Deep Agents"
 publishDate: "05 Mar 2026"
 updatedDate: "05 Mar 2026"
@@ -25,7 +25,7 @@ I picked our own domain as the learning exercise: Tiendanube store management. P
 Here's a quick demo of the final product, and the [repo](https://github.com/tadeodonegana/nube-agent/tree/main) in case you are looking for the code:
 
 <video controls width="100%">
-  <source src="./nube-agent.mp4" type="video/mp4" />
+  <source src="./_nube-agent.mp4" type="video/mp4" />
 </video>
 
 Now let's start talking about some cool stuff i learned while building this with LangChain deepagents.
