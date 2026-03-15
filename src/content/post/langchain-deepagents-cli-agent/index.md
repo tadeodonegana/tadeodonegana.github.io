@@ -2,7 +2,7 @@
 title: "Building a Store Management CLI with Langchain Deep Agents"
 description: "I built a CLI to manage my Tiendanube store with Langchain Deep Agents"
 publishDate: "05 Mar 2026"
-updatedDate: "15 Mar 2026"
+updatedDate: "05 Mar 2026"
 coverImage:
   src: "./nuvemshop-cli.jpeg"
   alt: "Nube Agent CLI"
