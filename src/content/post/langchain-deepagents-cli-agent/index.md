@@ -22,15 +22,11 @@ I picked our own domain as the learning exercise: Tiendanube store management. P
 > This [video](https://www.youtube.com/watch?v=TTMYJAw5tiA) is great for understanding how Deep Agents is built from scratch. Thanks, [@hwchase17](https://x.com/hwchase17)!
 
 
-Here's a quick demo of the final product, and the [repo](https://github.com/tadeodonegana/nube-agent/tree/main) in case you are looking for the code:
-
-<video controls width="100%">
-  <source src="./_nube-agent.mp4" type="video/mp4" />
-</video>
+Here it is the [repo](https://github.com/tadeodonegana/nube-agent/tree/main) in case you are looking for the code.
 
 Now let's start talking about some cool stuff i learned while building this with LangChain deepagents.
 
-##The Harness
+## The Harness
 
 In LangGraph, you build a StateGraph, define nodes, wire edges, add tools via ToolNode, manage state schemas, and compose everything manually. You control every detail, but for agent patterns you end up writing the same boilerplate: the model-tools loop, conditional routing, state management, message handling.
 

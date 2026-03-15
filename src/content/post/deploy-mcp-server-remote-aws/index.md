@@ -2,10 +2,12 @@
 title: "Build and deploy remote MCP servers to AWS EC2"
 description: "Learn how to build and deploy MCP servers to AWS EC2, making them available for remote usage."
 publishDate: "25 Apr 2025"
-updatedDate: "25 Apr 2025"
+updatedDate: "15 Mar 2026"
 tags: ["model context protocol", "mcp", "gen-ai", "aws", "machine learning ops"]
 draft: false
 ---
+
+> **Note:** This post was written in April 2025. The MCP ecosystem is evolving rapidly, and some of the information, APIs, or approaches described here may be outdated. Please refer to the [official MCP documentation](https://modelcontextprotocol.io/) for the latest guidance.
 
 ## Introduction
 
