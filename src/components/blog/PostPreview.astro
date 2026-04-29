@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import type { HTMLTag, Polymorphic } from "astro/types";
 import FormattedDate from "../FormattedDate.astro";
@@ -39,23 +40,45 @@ const processDescription = (desc: string): string => {
 };
 
 const formattedDescription = withDesc ? processDescription(post.data.description) : "";
+const cover = post.data.coverImage;
+const postUrl = `/posts/${post.slug}/`;
 ---
 
-<div class="flex flex-col">
-	<div class="flex items-start">
-		<FormattedDate date={postDate} class="min-w-[120px] text-gray-600 dark:text-gray-400" />
-		<Tag>
-			{post.data.draft && <span class="text-red-500">(Draft) </span>}
-			<a href={`/posts/${post.slug}/`} class="cactus-link font-bold" data-astro-prefetch>
-				{post.data.title}
-			</a>
-		</Tag>
-	</div>
+<div class="flex flex-col gap-3 sm:flex-row sm:gap-5">
 	{
-		withDesc && (
-			<div class="mt-2 pl-[120px]">
-				<q class="line-clamp-3 block italic" set:html={formattedDescription} />
-			</div>
+		cover && (
+			<a
+				href={postUrl}
+				class="group block flex-shrink-0 overflow-hidden rounded-lg sm:w-48"
+				aria-hidden="true"
+				tabindex={-1}
+				data-astro-prefetch
+			>
+				<Image
+					src={cover.src}
+					alt={cover.alt}
+					width={384}
+					height={216}
+					loading="lazy"
+					class="aspect-video h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+				/>
+			</a>
 		)
 	}
+	<div class="flex min-w-0 flex-1 flex-col">
+		<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+			<FormattedDate date={postDate} class="text-gray-600 dark:text-gray-400" />
+			<Tag>
+				{post.data.draft && <span class="text-red-500">(Draft) </span>}
+				<a href={postUrl} class="cactus-link font-bold" data-astro-prefetch>
+					{post.data.title}
+				</a>
+			</Tag>
+		</div>
+		{
+			withDesc && (
+				<q class="mt-2 line-clamp-3 block italic" set:html={formattedDescription} />
+			)
+		}
+	</div>
 </div>
