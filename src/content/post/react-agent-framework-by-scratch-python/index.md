@@ -3,6 +3,9 @@ title: "ReAct Agent framework: Agents before they were cool"
 description: "In this blog post, we will implement the ReAct pattern in Python from scratch to understand how it works."
 publishDate: "14 Jan 2025"
 updatedDate: "14 Jan 2025"
+coverImage:
+  src: "./cover.png"
+  alt: "ReAct agent framework"
 tags: ["agents", "python", "gen-ai"]
 draft: false
 ---

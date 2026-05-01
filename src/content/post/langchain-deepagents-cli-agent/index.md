@@ -4,7 +4,7 @@ description: "I built a CLI to manage my Tiendanube store with Langchain Deep Ag
 publishDate: "05 Mar 2026"
 updatedDate: "05 Mar 2026"
 coverImage:
-  src: "./nuvemshop-cli.jpeg"
+  src: "./cover.png"
   alt: "Nube Agent CLI"
 tags: ["agents", "langchain", "deepagents", "cli", "gen-ai"]
 draft: false

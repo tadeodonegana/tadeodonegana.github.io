@@ -3,6 +3,9 @@ title: "Building Effective Agents: My notes on Anthropic's Post"
 description: "Personal notes and key insights drawn from Anthropic's influential post on designing effective agents."
 publishDate: "16 Feb 2025"
 updatedDate: "16 Feb 2025"
+coverImage:
+  src: "./cover.png"
+  alt: "Building effective agents notes"
 tags: ["agents", "anthropic", "gen-ai"]
 draft: false
 ---
