@@ -6,7 +6,7 @@ coverImage:
   src: "./cover-langchain-checkpointer.png"
   alt: "LangGraph Postgres Checkpointer"
 tags: ["langgraph", "langchain", "memory"]
-draft: true
+draft: false
 ---
 
 In this blog post I'm going to walk through how we work with the LangGraph Postgres Checkpointer inside Tiendanube, and the improvements we built to make checkpoint persistence more efficient and scalable.
@@ -17,13 +17,19 @@ Before explaining why we need a checkpointer, let's understand what it is. As an
 
 This unlocks a lot of interesting capabilities, like human-in-the-loop, which lets us pause the agent at key points, review what a person did, and resume from exactly where it left off without losing context. Another key feature it opens the door to is time travel: you query the history of "saved games", travel to a past moment, change something, and continue forward creating a new branch. Ideal for "branching" from a point and changing the future behavior.
 
-At Tiendanube we developed an agentic solution that allows e-commerce management in a conversational way — a copilot so our merchants can perform operations easily inside the admin panel by communicating purely in natural language. The multi-agent system that powers this product under the hood is built entirely on LangGraph, the low-level framework developed by LangChain for building agents.
+![@checkpointer_architecture](./checkpointer-arch.jpeg "LangGraph Postgres Checkpointer in production")
+
+<div style="text-align: center;">
+<em>Figure 1. Architecture diagram of LangGraph Postgres Checkpointer: agent nodes persist state to Postgres tables, enabling HITL and time travel, with TTL and S3 cold archival (our implementation).</em>
+</div>
+
+At Tiendanube we developed an agentic solution that allows e-commerce management in a conversational way, a copilot so our merchants can perform operations easily inside the admin panel by communicating purely in natural language. The multi-agent system that powers this product under the hood is built entirely on LangGraph, the low-level framework developed by LangChain for building agents.
 
 This agentic product requires certain capabilities that we can only get by using LangGraph's checkpoint system: the ones mentioned above (HITL, time travel, etc.) and, of course, long-term memory for the agent, where we persist every interaction. That's why we decided to move forward with this functionality. The decision to use Postgres came from the fact that we already had a Postgres database instance running alongside our service, and alternatives like Redis weren't viable for storing checkpoints since we use Valkey as the internal alternative, and it doesn't have a checkpointer saver implemented (yet).
 
 ## The problem
 
-Once we had LangGraph Postgres Checkpointer in place, we were happy — but we started to notice that the growth of the tables holding checkpoints became unbounded as productive user traffic grew. Being able to control the growth of records in the database is critical for our team, since we process more than 120,000 conversations per week and the tables wouldn't stop growing.
+Once we had the LangGraph Postgres Checkpointer in place, we were happy, but we started to notice that the growth of the tables holding checkpoints became unbounded as productive user traffic grew. Being able to control the growth of records in the database is critical for our team, since we process more than 120,000 conversations per week and the tables wouldn't stop growing.
 
 To put the problem in numbers: an average conversation, using our multi-agent system and the level of abstraction defined for checkpoints, generates around 93 records across the four tables (`checkpoint_blobs`, `checkpoint_writes`, `checkpoints` and `checkpoint_migrations`) that LangGraph Checkpointer exposes. These records are produced after two messages and three tool calls, which we consider an average conversation flow.
 
@@ -32,7 +38,7 @@ After a week of testing in a staging environment with controlled traffic, the `c
 ![@checkpoint_growth_vs_conversations](./checkpointer-exponential.png "Checkpoint growth vs conversations")
 
 <div style="text-align: center;">
-<em>Figure 1. Checkpoint table size as the volume of conversations grows. Without a TTL or archival mechanism, the curve trends sharply upward as production traffic accumulates.</em>
+<em>Figure 2. Checkpoint table size as the volume of conversations grows. Without a TTL or archival mechanism, the curve trends sharply upward as production traffic accumulates.</em>
 </div>
 
 With a recurring purge or a time-to-live per conversation this could be managed easily, but LangGraph Postgres Checkpointer in its OSS version doesn't offer this mechanism out of the box. The TTL feature is available in LangGraph Platform (cloud or self-hosted) by configuring `checkpointer.ttl` in the `langgraph.json` file, and some checkpointers like Redis and DynamoDB also offer native TTL. Postgres, on top of that, doesn't have a native TTL either, which complicates the problem. The LangChain team itself suggests in [this GitHub issue](https://github.com/langchain-ai/langgraphjs/issues/1138) (from the LangGraphJS repo, but the same concept applies) that teams who need it should implement a time-to-live mechanism in-house.
@@ -59,7 +65,7 @@ To track migration updates, we monitor changes to the `libs/checkpoint-postgres/
 
 ### Deleting and cold-storing checkpoints
 
-The main change we introduced into our workflow with LangGraph Postgres Checkpointer was the recurring deletion of checkpointer records from the `checkpoint_blobs`, `checkpoint_writes` and `checkpoints` tables. To do this we built a cron job that runs `DELETE` queries on the tables, removing checkpoints older than X amount of time — a traditional TTL mechanism. For this we use a master table called `conversations`, where we store `created_at` and `updated_at` timestamps for each session. That lets us filter by date and run the `DELETE` queries only against the matching records.
+The main change we introduced into our workflow with LangGraph Postgres Checkpointer was the recurring deletion of checkpointer records from the `checkpoint_blobs`, `checkpoint_writes` and `checkpoints` tables. To do this we built a cron job that runs `DELETE` queries on the tables, removing checkpoints older than X amount of time, a traditional TTL mechanism. For this we use a master table called `conversations`, where we store `created_at` and `updated_at` timestamps for each session. That lets us filter by date and run the `DELETE` queries only against the matching records.
 
 The deletion runs on isolated database partitions, since we use partman to partition our tables by `thread_id` so we can run delete operations without touching the production partition, avoiding table locks and keeping our agent always live in production.
 
@@ -68,7 +74,7 @@ On top of the deletion, every week we run an ETL process that pulls the latest c
 ![@checkpointer_lifecycle](./checkpointer-lifecycle.png "Checkpointer lifecycle: Agent → Postgres → S3 warm storage")
 
 <div style="text-align: center;">
-<em>Figure 2. Lifecycle of a checkpoint at Tiendanube. The agent writes to Postgres for hot, operational state; a weekly ETL extracts the conversation, transforms it into a clean JSON, and ships it to S3 for warm/cold storage.</em>
+<em>Figure 3. Lifecycle of a checkpoint at Tiendanube. The agent writes to Postgres for hot, operational state; a weekly ETL extracts the conversation, transforms it into a clean JSON, and ships it to S3 for warm/cold storage.</em>
 </div>
 
 This long-term storage turned out to be very useful for running analytics on conversations and getting more accurate data about our users' interactions, all of it without depending on an external storage service like LangSmith, which under our plan only stores traces for 14 days. This represents a sizable order-of-magnitude saving.
@@ -79,17 +85,17 @@ In a conversation with @vtrivedy10, from the LangChain team, I found out that La
 
 If we had to highlight a single learning from this whole migration, it would be this: not every agent in a multi-agent system needs a checkpointer, and understanding where to apply it is what defines the sustainability of the architecture.
 
-In this product, the checkpointer is compiled only into the supervisor's graph — the graph that orchestrates the conversational loop, decides which specialist to hand off to, and consolidates the final response. The internal specialists (catalog, navigator, orders, stats) run as sub-graphs invoked from the supervisor's tool calls, and they don't persist their intermediate state in the checkpointer. Only the structured result of each specialist reaches the supervisor's state and gets persisted. This decision dramatically reduces the volume of records generated per conversation.
+In this product, the checkpointer is compiled only into the supervisor's graph, the graph that orchestrates the conversational loop, decides which specialist to hand off to, and consolidates the final response. The internal specialists run as sub-graphs invoked from the supervisor's tool calls, and they don't persist their intermediate state in the checkpointer. Only the structured result of each specialist reaches the supervisor's state and gets persisted. This decision dramatically reduces the volume of records generated per conversation.
 
 The criteria we use to decide where to apply the checkpointer boils down to three questions, which we recommend asking before compiling any graph with a saver:
 
 ![@rules_to_use_checkpointer](./rules-to-use-langchain-checkpointer.png "Decision tree for when to use a LangGraph checkpointer")
 
 <div style="text-align: center;">
-<em>Figure 3. Decision tree we apply before compiling any graph with a checkpointer. If the graph doesn't need persisted state, keep it stateless; if it does, decide the granularity based on what is required.</em>
+<em>Figure 4. Decision tree we apply before compiling any graph with a checkpointer. If the graph doesn't need persisted state, keep it stateless; if it does, decide the granularity based on what is required.</em>
 </div>
 
-1. **Do I need to pause the execution of this graph?** If the graph has no human-in-the-loop points or `interrupt()` calls, the checkpointer may not be necessary.
+1. **Does this graph need to be paused and resumed independently?** `interrupt()` calls inside a sub-graph propagate up to the nearest ancestor that has a checkpointer, so if this graph is always invoked as a tool call from a parent that already has one, it doesn't need its own. The question isn't whether the graph contains `interrupt()` calls, but whether it needs to be resumable on its own.
 
 2. **Do I need time travel at this level of granularity?** Time travel on the supervisor lets you "rewind" the conversation to a previous turn.
 
@@ -101,7 +107,7 @@ Applying this criterion is what allowed us to bring the number of records per co
 
 Our changes around recurring deletion and warm/cold storage of conversations gave us controlled growth of the `checkpoint_blobs`, `checkpoint_writes` and `checkpoints` tables inside our infrastructure. On top of that, warm storage lets us pull extremely interesting metrics about how our users behave with respect to our agentic architecture, giving us key insights to polish details and deliver a better experience over time.
 
-With the historical conversations we run user behavior analysis, grouping them by similar behaviors, detecting issues, and using that data to decide which features to build next. These days Polly, from LangSmith, is also a big help for this — but we'll talk about that in detail in another post.
+With the historical conversations we run user behavior analysis, grouping them by similar behaviors, detecting issues, and using that data to decide which features to build next. These days Polly, from LangSmith, is also a big help for this, but we'll talk about that in detail in another post.
 
 ## Appendix
 
@@ -111,7 +117,7 @@ With the historical conversations we run user behavior analysis, grouping them b
 
 **`checkpoints`**: Main table that stores the full graph state in JSONB format. Contains `channel_values` (primitive values like strings, integers, floats and booleans), `channel_versions` (version control for each channel), and execution metadata. The `parent_checkpoint_id` field maintains the chronological order of the checkpoints and is what enables time-travel by navigating backwards through the execution history.
 
-**`checkpoint_blobs`**: Stores complex (non-primitive) channel values, versioned and stored separately. LangGraph optimizes storage: primitive values (`str`, `int`, `float`, `bool`, `None`) are saved inline in the `checkpoints` table, while complex objects (such as message lists, tool outputs, data structures) are stored here. Each new checkpoint only saves the values that changed, significantly optimizing space usage.
+**`checkpoint_blobs`**: Stores complex (non-primitive) channel values, versioned and stored separately. LangGraph optimizes storage: primitive values are saved inline in the `checkpoints` table, while complex objects (such as message lists, tool outputs, data structures) are stored here. Each new checkpoint only saves the values that changed, significantly optimizing space usage.
 
 **`checkpoint_writes`**: Stores the pending writes of each superstep. Its main purpose is fault tolerance: when a node fails during the execution of a superstep, LangGraph preserves here the outputs of the nodes that did complete successfully. This makes it possible to resume execution without re-running already completed work, avoiding duplicated calls to LLMs or expensive tools.
 
