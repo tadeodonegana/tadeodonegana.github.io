@@ -1,10 +1,11 @@
 {/* Inlined to avoid FOUC. */}
 <script is:inline>
 	function getUserPref() {
+		// An explicit choice via the toggle always wins. Otherwise default to light
+		// rather than following prefers-color-scheme, so first-time visitors land on
+		// light regardless of their OS setting.
 		const storedTheme = typeof localStorage !== "undefined" && localStorage.getItem("theme");
-		return (
-			storedTheme || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark")
-		);
+		return storedTheme || "light";
 	}
 
 	function setTheme(newTheme) {

@@ -29,18 +29,33 @@ const ogOptions: SatoriOptions = {
 	],
 };
 
+// Mirrors the site's monochrome dark palette (src/styles/global.css `:root.dark`).
+// Satori runs at build time without a DOM, so it can't resolve the CSS variables
+// and these have to be kept in sync by hand.
+const ogColors = {
+	bg: "#1d1f20", // --theme-bg        210deg 6% 12%
+	title: "#ededed", // --theme-accent-2  0deg 0% 93%
+	body: "#c8c9cb", // --theme-text      220deg 3% 79%
+	muted: "#878a92", // dimmer step, for date + domain
+	divider: "#3a3c41", // subtle hairline
+};
+
+const siteHost = new URL(import.meta.env.SITE ?? "https://tadeodonegana.com/").host;
+
 const markup = (title: string, pubDate: string) =>
-	html`<div tw="flex flex-col w-full h-full bg-[#1a202c] text-[#a0aec0]">
-		<div tw="flex flex-col flex-1 w-full p-10 justify-center">
-			<p tw="text-lg mb-4 italic text-[#718096]">${pubDate}</p>
-			<h1 tw="text-5xl font-extrabold leading-tight text-[#e2e8f0]">${title}</h1>
+	html`<div tw="flex flex-col w-full h-full bg-[${ogColors.bg}] text-[${ogColors.body}]">
+		<div tw="flex flex-col flex-1 w-full px-16 justify-center">
+			<p tw="text-xl mb-5 text-[${ogColors.muted}]">${pubDate}</p>
+			<h1 tw="text-6xl font-bold leading-tight text-[${ogColors.title}]">${title}</h1>
 		</div>
-		<div tw="flex items-center justify-between w-full p-8 border-t border-[#38b2ac] text-lg">
+		<div
+			tw="flex items-center justify-between w-full px-16 py-10 border-t border-[${ogColors.divider}] text-xl"
+		>
 			<div tw="flex items-center">
-				<img src="${siteConfig.logoUrl}" alt="Site Logo" tw="w-10 h-10 rounded-full mr-3" />
-				<p tw="font-medium">${siteConfig.title}</p>
+				<img src="${siteConfig.logoUrl}" alt="" tw="w-12 h-12 rounded-full mr-4" />
+				<p tw="font-medium text-[${ogColors.body}]">${siteConfig.author}</p>
 			</div>
-			<p tw="text-[#81e6d9]">by ${siteConfig.author}</p>
+			<p tw="text-[${ogColors.muted}]">${siteHost}</p>
 		</div>
 	</div>`;
 

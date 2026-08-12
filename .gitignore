@@ -2,6 +2,9 @@
 dist/
 .output/
 
+# generated cover images, before they are installed into a post
+out/
+
 # dependencies
 node_modules/
 

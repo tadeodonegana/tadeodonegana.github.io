@@ -24,10 +24,14 @@ const post = defineCollection({
 			coverImage: z
 				.object({
 					src: image(),
+					// Light-mode variant of the same artwork. Optional: without it, `src`
+					// is shown in both themes.
+					srcLight: image().optional(),
 					alt: z.string(),
 				})
 				.optional(),
 			draft: z.boolean().default(false),
+			pinned: z.boolean().default(false),
 			tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
 			ogImage: z.string().optional(),
 		}),

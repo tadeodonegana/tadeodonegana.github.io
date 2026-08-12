@@ -5,7 +5,8 @@ publishDate: "14 Jan 2025"
 updatedDate: "14 Jan 2025"
 coverImage:
   src: "./cover.png"
-  alt: "ReAct agent framework"
+  srcLight: "./cover-light.png"
+  alt: "A broken ring marked with three points and a direction wedge, tracing the ReAct reasoning loop"
 tags: ["agents", "python", "gen-ai"]
 draft: false
 ---

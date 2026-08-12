@@ -5,7 +5,8 @@ publishDate: "25 Apr 2025"
 updatedDate: "25 Mar 2025"
 coverImage:
   src: "./images/cover.png"
-  alt: "Remote MCP server deployed on AWS"
+  srcLight: "./images/cover-light.png"
+  alt: "A stream of dots travelling along a line into a server that sits inside a dashed perimeter"
 tags: ["model context protocol", "mcp", "gen-ai", "aws", "machine learning ops"]
 draft: false
 ---

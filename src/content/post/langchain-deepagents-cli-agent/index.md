@@ -5,7 +5,8 @@ publishDate: "05 Mar 2026"
 updatedDate: "05 Mar 2026"
 coverImage:
   src: "./cover.png"
-  alt: "Nube Agent CLI"
+  srcLight: "./cover-light.png"
+  alt: "A large circle branching out to five smaller ones, with a visible break in one of the links"
 tags: ["agents", "langchain", "deepagents", "cli", "gen-ai"]
 draft: false
 ---

@@ -4,9 +4,11 @@ description: "How we tamed the growth of LangGraph's checkpoint tables at Tienda
 publishDate: "28 Apr 2026"
 coverImage:
   src: "./cover-langchain-checkpointer.png"
-  alt: "LangGraph Postgres Checkpointer"
+  srcLight: "./cover-langchain-checkpointer-light.png"
+  alt: "A row of squares fading from solid to an empty broken outline, as checkpoints age out of storage"
 tags: ["langgraph", "langchain", "memory"]
 draft: false
+pinned: true
 ---
 
 In this blog post I'm going to walk through how we work with the LangGraph Postgres Checkpointer inside Tiendanube, and the improvements we built to make checkpoint persistence more efficient and scalable.

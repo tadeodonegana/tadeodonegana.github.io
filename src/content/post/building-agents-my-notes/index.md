@@ -5,7 +5,8 @@ publishDate: "16 Feb 2025"
 updatedDate: "16 Feb 2025"
 coverImage:
   src: "./cover.png"
-  alt: "Building effective agents notes"
+  srcLight: "./cover-light.png"
+  alt: "A straight path dotted at regular intervals beside a winding, looping one, contrasting workflows with agents"
 tags: ["agents", "anthropic", "gen-ai"]
 draft: false
 ---

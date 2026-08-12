@@ -21,13 +21,28 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 {
 	data.coverImage && (
 		<div class="mb-6 flex justify-center">
+			{/* The covers are flat two-tone art, so each has a variant per theme. The
+			    theme is a class on <html>, not a media query, so these are swapped with
+			    Tailwind's dark: variant rather than <picture media>. */}
 			<Image
 				src={data.coverImage.src}
 				alt={data.coverImage.alt}
-				class="rounded-lg object-cover"
+				class:list={[
+					"rounded-lg object-cover",
+					data.coverImage.srcLight && "hidden dark:block",
+				]}
 				loading="eager"
 				fetchpriority="high"
 			/>
+			{data.coverImage.srcLight && (
+				<Image
+					src={data.coverImage.srcLight}
+					alt={data.coverImage.alt}
+					class="rounded-lg object-cover dark:hidden"
+					loading="eager"
+					fetchpriority="high"
+				/>
+			)}
 		</div>
 	)
 }

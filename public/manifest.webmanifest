@@ -1,7 +1,7 @@
 {
-	"name": "Astro Theme Cactus Demo",
-	"short_name": "Astro_Cactus",
-	"description": "Starter blog site for Astro",
+	"name": "Tadeo Donegana Braunschweig",
+	"short_name": "Tadeo D.B.",
+	"description": "Member of Technical Staff at Taste Labs. I write about AI and engineering in general.",
 	"icons": [
 		{
 			"src": "/192x192.png",
@@ -15,7 +15,7 @@
 		}
 	],
 	"start_url": "/",
-	"background_color": "#1d1f21",
-	"theme_color": "#2bbc8a",
+	"background_color": "#fafafa",
+	"theme_color": "#fafafa",
 	"display": "standalone"
 }

@@ -7,21 +7,21 @@
 		color-scheme: light;
 		/* https://tailwindcss.com/docs/customizing-colors#using-css-variables */
 		--theme-bg: 0deg 0% 98%;
-		--theme-link: 172deg 18% 41%;
+		--theme-link: 203deg 15% 38%;
 		--theme-text: 203deg 11% 15%;
-		--theme-accent: 351deg 66% 48%;
+		--theme-accent: 203deg 25% 28%;
 		--theme-accent-2: 0deg 0% 7%;
-		--theme-quote: 351deg 66% 48%;
+		--theme-quote: 203deg 25% 28%;
 	}
 
 	:root.dark {
 		color-scheme: dark;
 		--theme-bg: 210deg 6% 12%;
-		--theme-link: 330deg 49% 67%;
+		--theme-link: 220deg 8% 72%;
 		--theme-text: 220deg 3% 79%;
-		--theme-accent: 159deg 64% 45%;
+		--theme-accent: 220deg 10% 88%;
 		--theme-accent-2: 0deg 0% 93%;
-		--theme-quote: 102deg 100% 86%;
+		--theme-quote: 220deg 12% 82%;
 	}
 
 	html {

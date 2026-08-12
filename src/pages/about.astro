@@ -1,12 +1,9 @@
 ---
-import { Image } from "astro:assets";
-
 import PageLayout from "@/layouts/Base";
-import tadeoImage from "@/assets/tadeo_lemon.jpg";
 
 const meta = {
 	title: "About",
-	description: "I'm a starter theme for Astro.build",
+	description: "Member of Technical Staff at Taste Labs.",
 };
 ---
 
@@ -14,45 +11,43 @@ const meta = {
 	<div class="space-y-6">
 		<h1 class="title">About</h1>
 		<p>
-			Artificial Intelligence Engineer at <a
+			Member of Technical Staff at <a
 				class="cactus-link inline-block"
-				href="https://www.tiendanube.com/"
+				href="https://www.tastelabs.com/"
 				target="_blank"
 				rel="noopener noreferrer"
-				aria-label="github repository">Tiendanube</a
-			>. Bachelor's degree student in AI at the <a
-				class="cactus-link inline-block"
-				href="https://www.palermo.edu/"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="github repository">University of Palermo</a
+				aria-label="github repository">Taste Labs</a
 			>.
 		</p>
-		<div class="flex justify-center grayscale hover:filter-none">
-			<Image src={tadeoImage} alt="Me" loading="eager" fetchpriority="high" />
-		</div>
 		<p class="mb-4 text-xl font-semibold">Experience</p>
 		<div class="space-y-6">
 			{
 				[
 					{
-						startDate: "Jul. 2025",
+						startDate: "Jun 2026",
 						endDate: "Present",
+						role: "Member of Technical Staff",
+						company: "Taste Labs",
+						description: "5th engineer. Working on agentic products.",
+					},
+					{
+						startDate: "Jul 2025",
+						endDate: "Jun 2026",
 						role: "Artificial Intelligence Engineer",
 						company: "Tiendanube",
-						description: "Building AI agents for more than 150,000 merchants in all Latin America.",
+						description: "Building AI agents for more than 180,000 merchants in all Latin America.",
 					},
 					{
 						startDate: "Mar 2024",
-						endDate: "Present",
+						endDate: "May 2026",
 						role: "Co-founder",
-						company: "RooMix",
+						company: "Roomix",
 						description:
 							'Empty rooms were killing sales, not anymore. <a href="https://roomix.ai/" target="_blank" rel="noopener noreferrer" class="cactus-link inline-block">roomix.ai</a>',
 					},
 					{
 						startDate: "Aug 2023",
-						endDate: "Jul. 2025",
+						endDate: "Jul 2025",
 						role: "Software Engineer",
 						company: "Lemon Cash",
 						description:
@@ -64,23 +59,15 @@ const meta = {
 						role: "Research Assistant",
 						company: "University of Palermo",
 						description:
-							"I was part of a research team focused on detecting cyber attacks—such as DDoS, DoS, and brute force attacks—using machine learning techniques.",
+							"I was part of a research team focused on detecting cyber attacks —such as DDoS, DoS, and brute force attacks— using traditional machine learning techniques.",
 					},
 					{
-						startDate: "Aug. 2022",
-						endDate: "Jun. 2023",
+						startDate: "Aug 2022",
+						endDate: "Jun 2023",
 						role: "Data Analyst",
 						company: "KUDO",
 						description:
 							"I was responsible for developing several Tableau dashboards for various internal teams. I was also in charge of developing, maintaining, and deploying machine learning systems for the data science team.",
-					},
-					{
-						startDate: "Oct. 2021",
-						endDate: "Jan. 2022",
-						role: "Student Advocate",
-						company: "IBM",
-						description:
-							"Four month intensive program designed to equip university students with the latest tools and techniques in fields such as Data Science, Machine Learning, Cloud, DevOps and more.",
 					},
 				].map((experience) => (
 					<div class="flex flex-col gap-2">
@@ -111,7 +98,7 @@ const meta = {
 						endDate: "Dec 2025",
 						degree: "BSc in Artificial Intelligence",
 						institution: "University of Palermo",
-						description: "",
+						description: "Cum Laude",
 					},
 				].map((education) => (
 					<div class="flex flex-col gap-2">
@@ -144,7 +131,7 @@ const meta = {
 					target="_blank"
 					rel="noopener noreferrer"
 					aria-label="github repository">Curriculum Vitae</a
-				> to learn more about my experience!
+				> to learn more about my experience.
 			</p>
 		</div>
 	</div>
