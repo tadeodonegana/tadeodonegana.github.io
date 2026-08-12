@@ -1,0 +1,111 @@
+.claude/skills/blog-cover-images/normalize-cover.cjs
+  s_7b82feb57a3752::t_3fbe4b33ab1326 1-60
+src/pages/og-image/[slug].png.ts
+  s_7b82feb57a3752::t_166ab409d0c868 32-42,44,46-49,51-53,55-56,58
+  s_7b82feb57a3752::t_a0dc068f7cb486 43
+src/content/post/scaling-langgraph-postgres-checkpointer/index.md
+  s_40241e5171412c::t_c343efb2333a3f 11
+  s_7b82feb57a3752::t_004d23c1460103 7
+  s_7b82feb57a3752::t_f551069c4f5b95 8
+src/site.config.ts
+  s_7b82feb57a3752::t_2cc9737da3b0b1 10-11
+  s_7b82feb57a3752::t_f0d8677231f068 7
+src/content/post/react-agent-framework-by-scratch-python/index.md
+  s_7b82feb57a3752::t_004d23c1460103 8
+  s_7b82feb57a3752::t_72afa6f6c8aac2 9
+src/content/post/langchain-deepagents-cli-agent/index.md
+  s_7b82feb57a3752::t_c5b2454cae08a8 9
+  s_7b82feb57a3752::t_004d23c1460103 8
+src/styles/global.css
+  s_7b82feb57a3752::t_3b932191b42ae4 20,22,24
+  s_7b82feb57a3752::t_233b23594e1beb 10,12,14
+astro.config.ts
+  s_7b82feb57a3752::t_bbbc85976733f9 13
+.claude/skills/blog-cover-images/SKILL.md
+  s_7b82feb57a3752::t_7bfa22a7c99dc4 1-74,82,129-175
+  s_7b82feb57a3752::t_8b55e99bfbae27 75-81,83-128
+src/content/post/building-agents-my-notes/index.md
+  s_7b82feb57a3752::t_004d23c1460103 8
+  s_7b82feb57a3752::t_63628a9dd8aea3 9
+.claude/skills/blog-cover-images/verify.cjs
+  s_7b82feb57a3752::t_8a4fb8407e6aba 64
+  s_7b82feb57a3752::t_38ca81e078fe14 50,52
+  s_7b82feb57a3752::t_da9d25fe628f32 1-13,19-49,51,53-63,65-72
+  s_7b82feb57a3752::t_1f30188dba3c02 14-18
+src/pages/index.astro
+  s_40241e5171412c::t_a6923365ff7c0e 8
+  s_7b82feb57a3752::t_8c4d7c102684af 28
+  s_7b82feb57a3752::t_bebbc18e0b13e1 30,33
+  s_40241e5171412c::t_c1ae9f2958420b 10-12
+  s_40241e5171412c::t_7022c3458d269d 38-51
+.claude/skills/blog-cover-images/make-light-variant.cjs
+  s_7b82feb57a3752::t_611a66bc4db0dd 1-61
+src/components/blog/Hero.astro
+  s_7b82feb57a3752::t_3d6a77f1d138d5 24-26,30-33,37-45
+.claude/skills/blog-cover-images/build-icons.cjs
+  s_7b82feb57a3752::t_38fd322114f7b4 84-87,89,92-93,96-97
+  s_7b82feb57a3752::t_efe5666b28377d 1-83,88,90-91,94-95,98-142
+src/pages/about.astro
+  s_7b82feb57a3752::t_b21dd764fec378 38
+  h_7ebc124c02485e 6,14,16,19,29-33,44,62,101,134
+  s_7b82feb57a3752::t_46d6bdbed4c698 27,34-35,42,50,65-66
+src/content/config.ts
+  s_40241e5171412c::t_b0dfa74e8a2e1c 34
+  s_7b82feb57a3752::t_e645f50ca108f0 27-29
+src/components/BaseHead.astro
+  s_7b82feb57a3752::t_021a9a3cc3a193 33-35
+src/components/layout/Header.astro
+  s_40241e5171412c::t_4858efe9389838 27
+  s_40241e5171412c::t_13655af0753c10 20
+  s_40241e5171412c::t_794a4023178261 13
+  s_40241e5171412c::t_1f8e03ad4c59b9 9
+src/content/post/langchain-lumi-ecommerce-copilot/index.md
+  s_7b82feb57a3752::t_6b9caf36b0461d 1-4,9-158
+  s_7b82feb57a3752::t_93bf87c8a44838 5-8
+src/components/blog/PostPreview.astro
+  s_40241e5171412c::t_fd9c722aec0ec0 16-22,24
+  s_7b82feb57a3752::t_3f1b569a9ad8b6 26
+.claude/skills/blog-cover-images/generate.sh
+  s_7b82feb57a3752::t_e55ee6fdf78d00 1-101,103-105
+  s_7b82feb57a3752::t_ca1c5e1f8223e0 102,106-124
+src/components/ThemeProvider.astro
+  s_7b82feb57a3752::t_1581da10242eb5 4-6,8
+public/manifest.webmanifest
+  s_7b82feb57a3752::t_6bbb540191eec8 4
+  s_7b82feb57a3752::t_b7417dabd5d5f9 18-19
+  s_7b82feb57a3752::t_2c0e8a85a242ba 2-3
+src/content/post/deploy-mcp-server-remote-aws/index.md
+  s_7b82feb57a3752::t_004d23c1460103 8
+  s_7b82feb57a3752::t_221862a36c8a7d 9
+.gitignore
+  s_7b82feb57a3752::t_24bd2ce55287ac 5-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "7218b3ddb27463de58bf0f59d470efe3edfc6cad",
+  "prompts": {},
+  "humans": {
+    "h_7ebc124c02485e": {
+      "author": "Tadeo Donegana Braunschweig <tadeo@thetaste.ai>"
+    }
+  },
+  "sessions": {
+    "s_40241e5171412c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b5f6b084-529e-444c-b8b3-e6b9da47695d",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Tadeo Donegana Braunschweig <tadeo@thetaste.ai>"
+    },
+    "s_7b82feb57a3752": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ead03666-c84c-40bb-b9a2-07b6de40055c",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Tadeo Donegana Braunschweig <tadeo@thetaste.ai>"
+    }
+  }
+}
