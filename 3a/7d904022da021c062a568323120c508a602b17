@@ -1,0 +1,27 @@
+src/content/post/decubo-llm-benchmark-buenos-aires/index.md
+  h_7ebc124c02485e 6
+  s_7b82feb57a3752::t_0844e855bf5cef 9-10
+  s_7b82feb57a3752::t_f568241b455954 103-122
+  s_7b82feb57a3752::t_fec726aa4cb870 1-5,7-8,11-102,123-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "3a7d904022da021c062a568323120c508a602b17",
+  "prompts": {},
+  "humans": {
+    "h_7ebc124c02485e": {
+      "author": "Tadeo Donegana Braunschweig <tadeo@thetaste.ai>"
+    }
+  },
+  "sessions": {
+    "s_7b82feb57a3752": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ead03666-c84c-40bb-b9a2-07b6de40055c",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Tadeo Donegana Braunschweig <tadeo@thetaste.ai>"
+    }
+  }
+}
