@@ -1,7 +1,9 @@
 // Animates the pixel-art footer on a canvas laid over the static image, on the
-// same pixel grid and in the same greys: drifting clouds, smoke from the
-// chimney, blinking antenna tips, glints on the lake and the odd pair of birds.
-// Positions and palette come from scripts/footer-landscape.mjs.
+// same pixel grid and in the same greys: clouds drifting at three depths,
+// smoke from the chimney, blinking antenna tips, glints on the lake and the odd
+// pair of birds. After dark in Sierras Bayas itself, the dark theme shows stars
+// and a few lit windows. Positions and palette come from
+// scripts/footer-landscape.mjs.
 //
 // Motion is stepped at a low frame rate, like the art. Nothing runs while the
 // footer is off screen or the tab is hidden, and with reduced motion only the
@@ -99,17 +101,74 @@ export function initFooterAnimation(root: HTMLElement) {
 
 	// ---------------------------------------------------------------- layers
 
+	// Back, middle and front cloud layers move at different speeds, after
+	// ignasimonreal.com: the far ones are slower and hazier.
+	const CLOUD_SPEED = [0.45, 0.75, 1.1]; // pixels every two seconds
+	const CLOUD_HAZE = [0.9, 0.87, 0.84];
 	const span = art.W + 120;
 	const drawClouds = (t: number) => {
-		art.clouds.forEach((c, i) => {
-			// About one pixel every two seconds, wrapping across the whole sky.
-			const drift = (t / 2000) * (i ? 0.8 : 1);
+		for (const c of art.clouds) {
+			const drift = (t / 2000) * CLOUD_SPEED[c.depth]!;
 			const cx = ((((c.x + drift + 60) % span) + span) % span) - 60;
 			for (let row = 0; row < 2; row++) {
 				const half = Math.round(((c.w / 2) * (1 - row * 0.4)) / 2) * 2;
-				for (let x = -half; x < half; x++) plot(cx + x, c.y - row, 0.2, 0.86 - row * 0.03);
+				const h = CLOUD_HAZE[c.depth]! - row * 0.03;
+				for (let x = -half; x < half; x++) plot(cx + x, c.y - row, 0.2, h);
 			}
-		});
+		}
+	};
+
+	// ---------------------------------------------------------------- night
+
+	// The scene keeps Sierras Bayas time, so the mood matches the real place.
+	const zone = "America/Argentina/Buenos_Aires";
+	const clock = new Intl.DateTimeFormat("en-GB", {
+		timeZone: zone,
+		hour: "2-digit",
+		minute: "2-digit",
+		hour12: false,
+	});
+	let night = false;
+	let lastClock = -Infinity;
+	const tickClock = (t: number) => {
+		if (t - lastClock < 60_000) return;
+		lastClock = t;
+		const time = clock.format(new Date());
+		const hour = Number(time.slice(0, 2));
+		night = hour >= 20 || hour < 7;
+		root.title = `Sierras Bayas, ${time} local time. Read about it on Wikipedia`;
+	};
+
+	// Stars stay in open sky and out of the band where the footer text sits.
+	const stars: { x: number; y: number; period: number; phase: number }[] = [];
+	for (let i = 0; i < 400 && stars.length < 34; i++) {
+		const x = Math.floor(Math.random() * art.W);
+		const top = art.skyline[x]! - 4;
+		if (top < 3) continue;
+		const y = 1 + Math.floor(Math.random() * top);
+		if (Math.abs(x - art.W / 2) < 90 && y > 4 && y < 40) continue;
+		stars.push({ x, y, period: 2500 + Math.random() * 3000, phase: Math.random() * 6.28 });
+	}
+	const litWindows = art.windows
+		.filter(() => Math.random() < 0.45)
+		.map((w) => ({
+			...w,
+			seed: Math.random() * 1000,
+		}));
+
+	const drawNight = (t: number) => {
+		// Night reads only against a dark sky, as in ignasimonreal.com's capture.
+		if (!night || theme !== "dark") return;
+		for (const s of stars) {
+			// Twinkle in a few stepped greys.
+			const v = Math.sin((t / s.period) * Math.PI * 2 + s.phase);
+			plot(s.x, s.y, 0, lerp(0.82, 0.45, (v + 1) / 2));
+		}
+		for (const w of litWindows) {
+			// Each one goes dark for a while now and then.
+			if ((t / 1000 + w.seed) % 47 > 40) continue;
+			plot(w.x, w.y, 0, 0.2);
+		}
 	};
 
 	const smoke: Smoke[] = [];
@@ -228,6 +287,8 @@ export function initFooterAnimation(root: HTMLElement) {
 		last = now;
 		const t = now - start;
 		ctx.clearRect(0, 0, width, art.H);
+		tickClock(t);
+		drawNight(t);
 		drawClouds(t);
 		drawSmoke(t);
 		drawAntennas(t);
@@ -237,6 +298,8 @@ export function initFooterAnimation(root: HTMLElement) {
 
 	const still = () => {
 		ctx.clearRect(0, 0, width, art.H);
+		tickClock(performance.now() - start);
+		drawNight(0);
 		drawClouds(0);
 	};
 
@@ -268,12 +331,13 @@ export function initFooterAnimation(root: HTMLElement) {
 	document.addEventListener("visibilitychange", update);
 
 	// Reveal once on first sight, and only animate while on screen.
-	root.dataset.reveal = "pending";
+	const scene = root.closest<HTMLElement>("[data-footer-scene]") ?? root;
+	scene.dataset.reveal = "pending";
 	new IntersectionObserver(
 		(entries) => {
 			for (const e of entries) {
 				visible = e.isIntersecting;
-				if (visible) root.dataset.reveal = "shown";
+				if (visible) scene.dataset.reveal = "shown";
 			}
 			update();
 		},

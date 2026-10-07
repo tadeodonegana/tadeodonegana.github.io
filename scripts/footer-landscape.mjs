@@ -28,7 +28,11 @@ const sharp = require("sharp");
 // 352px crop from the middle. Scene x runs from X0 to X1, with 0..352 being
 // that middle crop.
 const W = 480;
-const H = 100;
+const H = 100; // height of the scene
+// Empty sky added above the scene; the footer's links and copyright sit in it
+// (centred over the landscape, after rileyadkisson.com's footer).
+const SKY_PAD = 16;
+const CH = H + SKY_PAD; // height of the canvas and of the PNGs
 const NARROW = 352;
 const OX = (W - NARROW) / 2;
 const X0 = -OX;
@@ -73,24 +77,24 @@ const fbm = (x, k = 0) => vnoise(x, k) * 0.6 + vnoise(x * 2.3, k + 7) * 0.4;
 
 // ---------------------------------------------------------------- canvas
 
-const px = new Float32Array(W * H); // darkness per pixel
-const hz = new Float32Array(W * H).fill(1); // haze per pixel; the sky is all haze
-const water = new Uint8Array(W * H); // 1 where the lake is still visible
+const px = new Float32Array(W * CH); // darkness per pixel
+const hz = new Float32Array(W * CH).fill(1); // haze per pixel; the sky is all haze
+const water = new Uint8Array(W * CH); // 1 where the lake is still visible
 let HAZE = 0; // haze for the layer being painted
 let WATER_PX = 0; // set to 1 while painting the lake
 const set = (x, y, v, h = HAZE) => {
 	x = Math.round(x) + OX;
-	y = Math.round(y);
-	if (x >= 0 && x < W && y >= 0 && y < H) {
+	y = Math.round(y) + SKY_PAD;
+	if (x >= 0 && x < W && y >= 0 && y < CH) {
 		px[y * W + x] = v;
 		hz[y * W + x] = h;
 		water[y * W + x] = WATER_PX;
 	}
 };
 // Anchors for the animation, in canvas coordinates.
-const anchors = { clouds: [], smoke: [], antennas: [] };
+const anchors = { clouds: [], smoke: [], antennas: [], windows: [] };
 const anchor = (list, x, y, extra = {}) =>
-	list.push({ x: Math.round(x) + OX, y: Math.round(y), ...extra });
+	list.push({ x: Math.round(x) + OX, y: Math.round(y) + SKY_PAD, ...extra });
 const val = (v, x, y) => (typeof v === "function" ? v(x, y) : v);
 const fillRect = (x0, y0, x1, y1, v) => {
 	for (let y = Math.round(y0); y < Math.round(y1); y++)
@@ -131,8 +135,11 @@ const TOWN = 68; // ground of the town and the plant
 
 // Clouds are not baked into the image; the footer draws them drifting.
 function sky() {
-	anchor(anchors.clouds, 80, 12, { w: 40 });
-	anchor(anchors.clouds, 250, 8, { w: 56 });
+	// Three depths, after ignasimonreal.com's back, middle and front cloud
+	// layers: higher is further, so smaller, hazier and slower.
+	anchor(anchors.clouds, 300, -10, { w: 26, depth: 0 });
+	anchor(anchors.clouds, 60, -2, { w: 40, depth: 1 });
+	anchor(anchors.clouds, 210, 8, { w: 56, depth: 2 });
 }
 
 // The sierras: broad, low and flat-topped. A plateau on the left, a long
@@ -253,6 +260,8 @@ function town() {
 		fillRect(x, y - 2, x + w, y, 0.04);
 		fillRect(x + w - 1, y - 2, x + w, y, 0.22);
 		fillRect(x, y - 3, x + w, y - 2, rnd() < 0.5 ? 0.5 : 0.36);
+		// A window that can light up at night.
+		if (w >= 3) anchor(anchors.windows, x + 1, y - 2);
 	}
 	HAZE = 0.15;
 	treeLine(150, X1, (x) => g0(x) + 3, 2, 3, 0.62, 2.4);
@@ -338,9 +347,17 @@ town();
 quarry();
 foreground();
 
+// For each canvas column, the first row that is not open sky; stars stay above.
+const skyline = [];
+for (let x = 0; x < W; x++) {
+	let y = 0;
+	while (y < CH && hz[y * W + x] >= 0.99) y++;
+	skyline.push(y);
+}
+
 // Runs of water pixels still visible after the scrub, as [y, x0, x1).
 const waterRuns = [];
-for (let y = 0; y < H; y++)
+for (let y = 0; y < CH; y++)
 	for (let x = 0; x < W; x++) {
 		if (!water[y * W + x]) continue;
 		let e = x;
@@ -351,7 +368,17 @@ for (let y = 0; y < H; y++)
 mkdirSync(new URL("../src/data/", import.meta.url), { recursive: true });
 writeFileSync(
 	new URL("../src/data/footer-landscape.json", import.meta.url),
-	JSON.stringify({ W, H, NARROW, OX, EDGE, themes: THEMES, ...anchors, water: waterRuns }) + "\n",
+	JSON.stringify({
+		W,
+		H: CH,
+		NARROW,
+		OX,
+		EDGE,
+		themes: THEMES,
+		...anchors,
+		water: waterRuns,
+		skyline,
+	}) + "\n",
 );
 
 // ---------------------------------------------------------------- output
@@ -374,8 +401,8 @@ for (const [name, { bg, black, white, steps }] of Object.entries(THEMES)) {
 		greys.push(black.map((c, k) => lerp(c, white[k], i / (steps - 1))));
 	const span = Math.abs(white[0] - black[0]) / (steps - 1);
 	for (const { suffix, left, width } of VARIANTS) {
-		const buf = Buffer.alloc(width * H * 3);
-		for (let y = 0; y < H; y++)
+		const buf = Buffer.alloc(width * CH * 3);
+		for (let y = 0; y < CH; y++)
 			for (let x = 0; x < width; x++) {
 				const i = y * W + x + left;
 				// Fade both side edges into the page, so the art sits in its column
@@ -394,11 +421,11 @@ for (const [name, { bg, black, white, steps }] of Object.entries(THEMES)) {
 				for (let c = 0; c < 3; c++) buf[(y * width + x) * 3 + c] = Math.round(rgb[c]);
 			}
 		const file = new URL(`sierras-bayas-${name}${suffix}.png`, dir).pathname;
-		const info = await sharp(buf, { raw: { width, height: H, channels: 3 } })
+		const info = await sharp(buf, { raw: { width, height: CH, channels: 3 } })
 			.png({ palette: true, colours: greys.length, dither: 0, compressionLevel: 9 })
 			.toFile(file);
 		console.log(
-			`sierras-bayas-${name}${suffix}.png  ${width}x${H}  ${(info.size / 1024).toFixed(1)} KB`,
+			`sierras-bayas-${name}${suffix}.png  ${width}x${CH}  ${(info.size / 1024).toFixed(1)} KB`,
 		);
 	}
 }

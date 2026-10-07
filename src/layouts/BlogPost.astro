@@ -74,12 +74,15 @@ const { headings } = await post.render();
 <script>
 	const scrollBtn = document.getElementById("to-top-btn") as HTMLButtonElement;
 	const targetHeader = document.getElementById("blog-hero") as HTMLDivElement;
+	const footerScene = document.querySelector<HTMLElement>("[data-footer-scene]");
 
+	// Only show the scroll to top button when the heading is out of view, and
+	// hide it again over the footer art, which it would otherwise cover.
+	const inView = new Map<Element, boolean>();
 	function callback(entries: IntersectionObserverEntry[]) {
-		entries.forEach((entry) => {
-			// only show the scroll to top button when the heading is out of view
-			scrollBtn.dataset.show = (!entry.isIntersecting).toString();
-		});
+		entries.forEach((entry) => inView.set(entry.target, entry.isIntersecting));
+		const show = !inView.get(targetHeader) && !(footerScene && inView.get(footerScene));
+		scrollBtn.dataset.show = show.toString();
 	}
 
 	scrollBtn.addEventListener("click", () => {
@@ -88,6 +91,7 @@ const { headings } = await post.render();
 
 	const observer = new IntersectionObserver(callback);
 	observer.observe(targetHeader);
+	if (footerScene) observer.observe(footerScene);
 </script>
 
 <style>
