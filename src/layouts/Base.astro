@@ -10,10 +10,13 @@ import { GoogleAnalytics } from "astro-google-analytics";
 
 interface Props {
 	meta: SiteMeta;
+	// Post pages widen their content on xl screens; the footer art follows.
+	wideFooter?: boolean;
 }
 
 const {
 	meta: { title, description = siteConfig.description, ogImage, articleDate },
+	wideFooter = false,
 } = Astro.props;
 ---
 
@@ -29,6 +32,6 @@ const {
 		<main id="main">
 			<slot />
 		</main>
-		<Footer />
+		<Footer wide={wideFooter} />
 	</body>
 </html>
