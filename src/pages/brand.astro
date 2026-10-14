@@ -1,0 +1,579 @@
+---
+import { Image } from "astro:assets";
+import PageLayout from "@/layouts/Base";
+import { getAllPosts } from "@/utils";
+import cover from "@/assets/brand/cover.png";
+import coverLight from "@/assets/brand/cover-light.png";
+
+const meta = {
+	title: "Brand guidelines",
+	description:
+		"The brand guidelines of tadeodonegana.com: the name, the greys, the one typeface, the line, the covers and the voice.",
+};
+
+const chapters = [
+	{ slug: "name", text: "The name" },
+	{ slug: "color", text: "Color" },
+	{ slug: "type", text: "Type" },
+	{ slug: "line", text: "Line" },
+	{ slug: "covers", text: "Covers" },
+	{ slug: "voice", text: "Voice" },
+];
+
+// The six theme tokens from src/styles/global.css, as hex.
+const tokens = [
+	{
+		name: "bg",
+		role: "The page. Never pure white or pure black.",
+		light: "#FAFAFA",
+		dark: "#1D1F20",
+	},
+	{
+		name: "text",
+		role: "Body copy, icons and the link underline.",
+		light: "#22272A",
+		dark: "#C8C9CB",
+	},
+	{
+		name: "accent-2",
+		role: "Titles. The darkest ink on the page.",
+		light: "#121212",
+		dark: "#EDEDED",
+	},
+	{
+		name: "accent",
+		role: "Company names and the # before headings.",
+		light: "#364C59",
+		dark: "#DDDFE3",
+	},
+	{ name: "link", role: "Hover. The underline turns to this.", light: "#52646F", dark: "#B2B6BD" },
+	{
+		name: "quote",
+		role: "Block quotes and the updated-date badge.",
+		light: "#364C59",
+		dark: "#CCCFD7",
+	},
+];
+
+const typeScale = [
+	{
+		name: "Name",
+		spec: "24px / bold",
+		cls: "text-2xl font-bold",
+		sample: "Tadeo Donegana Braunschweig",
+	},
+	{
+		name: "Title",
+		spec: "24px / semibold",
+		cls: "text-2xl font-semibold text-accent-2",
+		sample: "Scaling the checkpointer",
+	},
+	{
+		name: "Section",
+		spec: "20px / semibold",
+		cls: "text-xl font-semibold text-accent-2",
+		sample: "Pinned Posts",
+	},
+	{
+		name: "Body",
+		spec: "14px / regular",
+		cls: "text-sm",
+		sample: "A checkpointer is a save game for agents.",
+	},
+	{
+		name: "Summary",
+		spec: "14px / italic, in quotes",
+		cls: "text-sm italic",
+		sample: "“How we tamed the growth of the checkpoint tables.”",
+	},
+	{
+		name: "Meta",
+		spec: "12px / semibold",
+		cls: "text-xs font-semibold text-gray-600 dark:text-gray-400",
+		sample: "Apr 28, 2026 / 9 min read",
+	},
+];
+
+const coverSlugs = [
+	"building-agents-my-notes",
+	"langchain-lumi-ecommerce-copilot",
+	"scaling-langgraph-postgres-checkpointer",
+];
+const posts = await getAllPosts();
+const covers = coverSlugs
+	.map((slug) => posts.find((p) => p.slug === slug))
+	.filter((p) => p?.data.coverImage)
+	.map((p) => p!.data.coverImage!);
+---
+
+<PageLayout meta={meta} wideFooter>
+	<div class="gap-x-10 lg:flex lg:items-start xl:-mx-32">
+		<aside class="sticky top-20 order-2 -me-32 hidden shrink-0 basis-64 lg:block">
+			<h2 class="font-semibold">Table of Contents</h2>
+			<ul class="mt-4 text-xs">
+				{
+					chapters.map(({ slug, text }) => (
+						<li>
+							<a
+								class="brand-toc-link mt-3 block hover:text-accent"
+								href={`#${slug}`}
+								aria-label={`Scroll to section: ${text}`}
+							>
+								<span class="me-0.5">#</span>
+								{text}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</aside>
+
+		<article class="brand min-w-0 flex-grow break-words">
+			{/* Same two-file swap as the post covers in src/components/blog/Hero.astro. */}
+			<div class="mb-6 flex justify-center">
+				<Image
+					src={cover}
+					alt="Five hand-drawn marks in a row, a dot, a ring, a dotted line, a dashed line and a rounded square, underlined together by one long line"
+					class="hidden rounded-lg object-cover dark:block"
+					loading="eager"
+					fetchpriority="high"
+				/>
+				<Image
+					src={coverLight}
+					alt="Five hand-drawn marks in a row, a dot, a ring, a dotted line, a dashed line and a rounded square, underlined together by one long line"
+					class="rounded-lg object-cover dark:hidden"
+					loading="eager"
+					fetchpriority="high"
+				/>
+			</div>
+			<h1 class="title mb-3 sm:mb-1">Brand guidelines</h1>
+			<p class="font-semibold">tadeodonegana.com / October 2026 / 6 chapters</p>
+			<p class="mt-8">
+				These are the brand guidelines of <a
+					href="https://tadeodonegana.com"
+					class="cactus-link inline-block">tadeodonegana.com</a
+				>, my personal website where I mostly write about AI.
+			</p>
+			<p class="mt-4">
+				I wrote it down to keep new posts and pages consistent with the old ones. Click any hex
+				value to copy it, and use the theme toggle at the top to see each chapter in light and dark.
+			</p>
+
+			{/* ------------------------------------------------------------ 00 name */}
+			<section id="name" class="brand-section">
+				<h2 class="brand-h2">The name</h2>
+				<p>
+					There is no logo. The full name, set bold in the site's monospace, is the mark. It sits at
+					the top left of every page and links home.
+				</p>
+				<div class="brand-stage mt-6 flex flex-col items-start gap-y-1 px-6 py-10 sm:px-10">
+					<span class="text-xl font-bold sm:text-2xl">Tadeo Donegana Braunschweig</span>
+					<span class="text-sm">
+						<span class="font-bold">Home</span>
+						<span class="mx-3 border-s border-dashed border-textColor/20"></span>About
+						<span class="mx-3 border-s border-dashed border-textColor/20"></span>Blog
+					</span>
+				</div>
+				<p class="brand-caption">The header, as it is on every page. 24px bold, 20px on phones.</p>
+
+				<ul class="brand-rules mt-8">
+					<li class="is-do">
+						Write all three names. Braunschweig is part of the name, not an extra.
+					</li>
+					<li class="is-do">
+						Never shorten it. On narrow phones it can wrap to a second line, and that is fine.
+					</li>
+					<li class="is-do">
+						Use <code>tadeodonegana</code>, in lower case, for handles and the domain.
+					</li>
+					<li class="is-dont">
+						Do not draw a monogram, an icon or a "TDB". The name does that work.
+					</li>
+					<li class="is-dont">Do not set the name in a different typeface, colour or weight.</li>
+				</ul>
+			</section>
+
+			{/* ------------------------------------------------------------ 01 color */}
+			<section id="color" class="brand-section">
+				<h2 class="brand-h2">Color</h2>
+				<p>
+					The site is grey. Six tokens, each with a light and a dark value, do all the work. A cool
+					slate tint (hue 203) sits in the light theme's accent and link, so that the greys do not
+					look dead. Nothing else on the site has colour, apart from the draft label.
+				</p>
+
+				<div class="mt-6 overflow-x-auto">
+					<table class="brand-tokens w-full text-start">
+						<thead>
+							<tr>
+								<th>Token</th>
+								<th>Light</th>
+								<th>Dark</th>
+								<th class="hidden sm:table-cell">Use</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								tokens.map((t) => (
+									<tr>
+										<td class="font-semibold">--theme-{t.name}</td>
+										<td>
+											<button type="button" class="brand-hex" data-hex={t.light}>
+												<span class="brand-chip" style={`background:${t.light}`} />
+												<span data-label>{t.light}</span>
+											</button>
+										</td>
+										<td>
+											<button type="button" class="brand-hex" data-hex={t.dark}>
+												<span class="brand-chip" style={`background:${t.dark}`} />
+												<span data-label>{t.dark}</span>
+											</button>
+										</td>
+										<td class="hidden text-xs sm:table-cell">{t.role}</td>
+									</tr>
+								))
+							}
+						</tbody>
+					</table>
+				</div>
+				<p class="brand-caption">
+					The tokens are stored as HSL channels, for example <code
+						>--theme-text: 203deg 11% 15%</code
+					>, so that Tailwind can add opacity: <code>text-textColor/20</code>.
+				</p>
+
+				<div class="mt-8 grid gap-4 sm:grid-cols-2">
+					<div class="brand-pair" style="background:#FAFAFA;color:#22272A">
+						<span style="color:#121212" class="font-semibold">Light</span>
+						<span>Text on bg, 14.5 : 1</span>
+						<span style="color:#52646F">Link on bg, 5.9 : 1</span>
+					</div>
+					<div class="brand-pair" style="background:#1D1F20;color:#C8C9CB">
+						<span style="color:#EDEDED" class="font-semibold">Dark</span>
+						<span>Text on bg, 10.0 : 1</span>
+						<span style="color:#B2B6BD">Link on bg, 8.1 : 1</span>
+					</div>
+				</div>
+
+				<ul class="brand-rules mt-8">
+					<li class="is-do">Use the tokens, never a raw hex, so both themes follow.</li>
+					<li class="is-do">
+						For a quiet line, use the text colour at 20% (<code>textColor/20</code>).
+					</li>
+					<li class="is-dont">
+						Do not add a brand colour. If something needs attention, make it bold.
+					</li>
+					<li class="is-dont">Do not use pure white (#FFF) or pure black (#000) as a surface.</li>
+				</ul>
+			</section>
+
+			{/* ------------------------------------------------------------ 02 type */}
+			<section id="type" class="brand-section">
+				<h2 class="brand-h2">Type</h2>
+				<p>
+					One family: the system monospace. On a Mac that is SF Mono, on Windows Consolas, elsewhere
+					the nearest match. Nothing is downloaded, so the text shows at once. Hierarchy comes from
+					size and weight only.
+				</p>
+				<p class="brand-caption mt-3 !text-start">
+					<code class="!whitespace-normal"
+						>ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier
+						New", monospace</code
+					>
+				</p>
+
+				<div class="mt-6">
+					{
+						typeScale.map((s) => (
+							<div class="brand-type-row">
+								<div class="text-xs text-gray-600 dark:text-gray-400">
+									<div class="font-semibold text-textColor">{s.name}</div>
+									<div>{s.spec}</div>
+								</div>
+								<div class={`${s.cls} min-w-0`}>{s.sample}</div>
+							</div>
+						))
+					}
+				</div>
+
+				<div class="brand-stage mt-8 px-6 py-8 sm:px-10">
+					<div class="text-xs font-semibold text-gray-600 dark:text-gray-400">Glyphs</div>
+					<div class="mt-3 text-xl leading-relaxed tracking-wide">
+						ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
+						 abcdefghijklmnopqrstuvwxyz<br />
+						 0123456789 # / &copy; &middot; {"{}"} [] &rarr;
+					</div>
+				</div>
+
+				<ul class="brand-rules mt-8">
+					<li class="is-do">Use bold for the name and links in lists, semibold for titles.</li>
+					<li class="is-do">Put a post summary in italics, inside curly quotes.</li>
+					<li class="is-dont">Do not add a second typeface, not even for headings or code.</li>
+					<li class="is-dont">Do not use all caps or letter-spacing for emphasis.</li>
+				</ul>
+			</section>
+
+			{/* ------------------------------------------------------------ 03 line */}
+			<section id="line" class="brand-section">
+				<h2 class="brand-h2">Line</h2>
+				<p>
+					The site has almost no boxes. Structure comes from three kinds of line, all thin, and all
+					in the text colour.
+				</p>
+
+				<div class="mt-6 grid gap-4 sm:grid-cols-3">
+					<figure class="brand-stage flex flex-col justify-between gap-y-6 p-5">
+						<div>
+							<a href="#line" class="cactus-link font-bold">Hover this link</a>
+						</div>
+						<figcaption class="text-xs">
+							<span class="font-semibold">Underline.</span> A 1px rule at the foot of the text,
+							drawn as a background. On hover, 2px in the link colour.
+						</figcaption>
+					</figure>
+					<figure class="brand-stage flex flex-col justify-between gap-y-6 p-5">
+						<div class="flex text-sm">
+							<span class="pe-3">Home</span>
+							<span class="border-s border-dashed border-textColor/20 px-3">About</span>
+							<span class="border-s border-dashed border-textColor/20 ps-3">Blog</span>
+						</div>
+						<figcaption class="text-xs">
+							<span class="font-semibold">Dash.</span> Dividers, rules and table lines are dashed,
+							in grey #666 or text at 20%.
+						</figcaption>
+					</figure>
+					<figure class="brand-stage flex flex-col justify-between gap-y-6 p-5">
+						<div>
+							<code class="brand-code">astro dev</code>
+						</div>
+						<figcaption class="text-xs">
+							<span class="font-semibold">Dot.</span> Inline code has a 1px dotted #666 border and a
+							2px radius. Nothing else is dotted.
+						</figcaption>
+					</figure>
+				</div>
+
+				<ul class="brand-rules mt-8">
+					<li class="is-do">
+						Separate things with space first, and a dashed line only if space is not enough.
+					</li>
+					<li class="is-do">Round corners only on images (8px) and the menu (6px).</li>
+					<li class="is-dont">Do not use cards, fills or shadows to make a section.</li>
+				</ul>
+			</section>
+
+			{/* ------------------------------------------------------------ 04 covers */}
+			<section id="covers" class="brand-section">
+				<h2 class="brand-h2">Covers</h2>
+				<p>
+					Each long post opens with a drawing. It is one idea from the post, drawn as a few thick
+					ink strokes with an uneven, hand-made edge. There are two colours only: ink and page.
+				</p>
+
+				<div class="mt-6 grid gap-4 sm:grid-cols-3">
+					{
+						covers.map((c) => (
+							<figure>
+								<Image
+									src={c.src}
+									alt={c.alt}
+									class:list={["rounded-lg object-cover", c.srcLight && "hidden dark:block"]}
+									widths={[400, 800]}
+									sizes="(min-width: 640px) 240px, 100vw"
+								/>
+								{c.srcLight && (
+									<Image
+										src={c.srcLight}
+										alt={c.alt}
+										class="rounded-lg object-cover dark:hidden"
+										widths={[400, 800]}
+										sizes="(min-width: 640px) 240px, 100vw"
+									/>
+								)}
+								<figcaption class="mt-2 text-xs text-gray-600 dark:text-gray-400">
+									{c.alt}
+								</figcaption>
+							</figure>
+						))
+					}
+				</div>
+
+				<div class="mt-8 grid gap-x-8 gap-y-2 text-xs sm:grid-cols-2">
+					<div class="brand-spec">
+						<span>Size</span><span>2752 &times; 1536 (16 : 9, near)</span>
+					</div>
+					<div class="brand-spec"><span>Light file</span><span>#121212 on #FAFAFA</span></div>
+					<div class="brand-spec"><span>Files</span><span>cover.png + cover-light.png</span></div>
+					<div class="brand-spec"><span>Dark file</span><span>#EDEDED on #1D1F20</span></div>
+				</div>
+
+				<ul class="brand-rules mt-8">
+					<li class="is-do">
+						Draw the idea of the post as a diagram: nodes, paths, a loop, a fade.
+					</li>
+					<li class="is-do">Make one file for each theme. The ink and page colours swap.</li>
+					<li class="is-do">Write the alt text as a plain description of the drawing.</li>
+					<li class="is-dont">Do not use photos, gradients, a third colour or text in a cover.</li>
+				</ul>
+			</section>
+
+			{/* ------------------------------------------------------------ 05 voice */}
+			<section id="voice" class="brand-section">
+				<h2 class="brand-h2">Voice</h2>
+				<p>
+					An engineer explaining to another engineer what they built and what went wrong. First
+					person, plain words, real numbers. "We" is the team, "I" is the author.
+				</p>
+
+				<div class="mt-6 grid gap-4 sm:grid-cols-2">
+					<div class="brand-stage p-5">
+						<div class="brand-rules-head is-do">Like this</div>
+						<q class="mt-3 block italic"
+							>How we tamed the growth of LangGraph's checkpoint tables at Tiendanube with custom
+							TTL, cold storage, and the right level of abstraction.</q
+						>
+					</div>
+					<div class="brand-stage p-5">
+						<div class="brand-rules-head is-dont">Not like this</div>
+						<q class="mt-3 block italic"
+							>Unlock the full potential of your agents with a revolutionary, battle-tested approach
+							to state management.</q
+						>
+					</div>
+				</div>
+
+				<ul class="brand-rules mt-8">
+					<li class="is-do">Give the number: 120,000 conversations a week, 93 records, 56 MB.</li>
+					<li class="is-do">
+						Explain with an everyday picture first, for example a "save game" for agents.
+					</li>
+					<li class="is-do">Say what did not work. The mistakes are part of the post.</li>
+					<li class="is-dont">Do not sell. No "unlock", "supercharge" or "game-changer".</li>
+					<li class="is-dont">
+						Do not hide the stack. Name the tools: LangGraph, Postgres, Valkey.
+					</li>
+				</ul>
+			</section>
+		</article>
+	</div>
+</PageLayout>
+
+<style>
+	.brand-section {
+		@apply mt-20 scroll-mt-8;
+	}
+	.brand-h2 {
+		@apply relative mb-4 text-xl font-semibold text-accent-2;
+	}
+	.brand-h2::before {
+		@apply absolute -ms-4 text-accent;
+		content: "#";
+	}
+	.brand-caption {
+		@apply mt-2 text-center text-xs text-gray-500 dark:text-gray-400;
+	}
+	.brand :global(code) {
+		@apply whitespace-nowrap rounded-sm border border-dotted border-[#666] px-1 text-xs;
+	}
+	.brand-stage {
+		@apply rounded-lg border border-dashed border-textColor/20;
+	}
+	.brand-code {
+		@apply text-sm;
+	}
+
+	/* do and don't lists, marked with a + and a - in the margin */
+	.brand-rules {
+		@apply space-y-2 text-sm;
+	}
+	.brand-rules li {
+		@apply relative ps-6;
+	}
+	.brand-rules li::before {
+		@apply absolute start-0 font-bold;
+	}
+	.brand-rules .is-do::before {
+		content: "+";
+	}
+	.brand-rules .is-dont::before {
+		@apply text-gray-500;
+		content: "-";
+	}
+	.brand-rules .is-dont {
+		@apply text-gray-600 dark:text-gray-400;
+	}
+	.brand-rules-head {
+		@apply text-xs font-semibold;
+	}
+	.brand-rules-head.is-do::before {
+		content: "+ ";
+	}
+	.brand-rules-head.is-dont::before {
+		content: "- ";
+	}
+
+	/* color */
+	.brand-tokens {
+		@apply text-sm;
+	}
+	.brand-tokens th {
+		@apply border-b border-dashed border-[#666] pb-2 text-start text-xs font-bold;
+	}
+	.brand-tokens td {
+		@apply py-2.5 pe-4 align-middle;
+	}
+	.brand-hex {
+		@apply inline-flex items-center gap-x-2 rounded-sm hover:text-link;
+	}
+	.brand-chip {
+		@apply inline-block h-4 w-4 rounded-sm border border-textColor/20;
+	}
+	.brand-pair {
+		@apply flex flex-col gap-y-1 rounded-lg border border-dashed border-[#666]/40 p-5 text-xs;
+	}
+	/* type and specs */
+	.brand-type-row {
+		@apply grid items-baseline gap-x-6 gap-y-1 border-b border-dashed border-textColor/20 py-4 sm:grid-cols-[9rem_1fr];
+	}
+	.brand-spec {
+		@apply flex justify-between gap-x-4 border-b border-dashed border-textColor/20 py-2;
+	}
+	.brand-spec span:first-child {
+		@apply font-semibold;
+	}
+
+	.brand-toc-link[aria-current="true"] {
+		@apply font-semibold text-accent;
+	}
+</style>
+
+<script>
+	// Copy a hex value on click, and say so for a moment.
+	document.addEventListener("click", (e) => {
+		const btn = (e.target as HTMLElement).closest<HTMLElement>("[data-hex]");
+		if (!btn) return;
+		const hex = btn.dataset.hex!;
+		const label = btn.querySelector<HTMLElement>("[data-label]");
+		const done = () => {
+			btn.title = "Copied";
+			if (!label || label.classList.contains("sr-only")) return;
+			label.textContent = "Copied";
+			setTimeout(() => (label.textContent = hex), 1200);
+		};
+		navigator.clipboard?.writeText(hex).then(done, done);
+	});
+
+	// Mark the chapter in view in the table of contents.
+	const links = [...document.querySelectorAll<HTMLAnchorElement>(".brand-toc-link")];
+	const io = new IntersectionObserver(
+		(entries) => {
+			for (const en of entries) {
+				if (!en.isIntersecting) continue;
+				for (const l of links)
+					l.setAttribute("aria-current", String(l.hash === `#${en.target.id}`));
+			}
+		},
+		{ rootMargin: "-30% 0px -65% 0px" },
+	);
+	document.querySelectorAll(".brand-section").forEach((s) => io.observe(s));
+</script>
