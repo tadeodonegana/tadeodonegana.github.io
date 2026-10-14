@@ -1,61 +1,59 @@
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import type { APIContext, GetStaticPaths } from "astro";
 import { getEntryBySlug } from "astro:content";
-import satori, { type SatoriOptions } from "satori";
 import { html } from "satori-html";
-import { Resvg } from "@resvg/resvg-js";
 import { siteConfig } from "@/site-config";
 import { getAllPosts, getFormattedDate } from "@/utils";
-
-import RobotoMono from "@/assets/roboto-mono-regular.ttf";
-import RobotoMonoBold from "@/assets/roboto-mono-700.ttf";
-
-const ogOptions: SatoriOptions = {
-	width: 1200,
-	height: 630,
-	// debug: true,
-	fonts: [
-		{
-			name: "Roboto Mono",
-			data: Buffer.from(RobotoMono),
-			weight: 400,
-			style: "normal",
-		},
-		{
-			name: "Roboto Mono",
-			data: Buffer.from(RobotoMonoBold),
-			weight: 700,
-			style: "normal",
-		},
-	],
-};
-
-// Mirrors the site's monochrome dark palette (src/styles/global.css `:root.dark`).
-// Satori runs at build time without a DOM, so it can't resolve the CSS variables
-// and these have to be kept in sync by hand.
-const ogColors = {
-	bg: "#1d1f20", // --theme-bg        210deg 6% 12%
-	title: "#ededed", // --theme-accent-2  0deg 0% 93%
-	body: "#c8c9cb", // --theme-text      220deg 3% 79%
-	muted: "#878a92", // dimmer step, for date + domain
-	divider: "#3a3c41", // subtle hairline
-};
+import { coverArt, ogColors, pngResponse, renderPng } from "../../utils/ogImage";
 
 const siteHost = new URL(import.meta.env.SITE ?? "https://tadeodonegana.com/").host;
 
-const markup = (title: string, pubDate: string) =>
+type Art = Awaited<ReturnType<typeof coverArt>>;
+
+// The cover's source file, from the post's frontmatter (coverImage.src is
+// relative to the post). The parsed data only has the processed image URL,
+// which in a build points at a hashed copy rather than the file on disk.
+async function coverFile(postId: string) {
+	const file = join(process.cwd(), "src/content/post", postId);
+	const match = (await readFile(file, "utf8")).match(
+		/^coverImage:\s*\n(?:[ \t]+.*\n)*?[ \t]+src:\s*["']?([^"'\n]+)["']?/m,
+	);
+	return match ? join(dirname(file), match[1]!.trim()) : null;
+}
+
+// The post's own cover drawing on top, as on the post page, then the title.
+// The footer is the name and the domain: the name is the mark, so no avatar.
+//
+// satori-html escapes interpolated strings as text, so markup can't be spliced
+// in conditionally; a post without a cover hides the art row instead, and
+// gets a 1px transparent placeholder so the img still has a source.
+const NO_ART: Art = {
+	src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+	width: 1,
+	height: 1,
+};
+
+const markup = (title: string, pubDate: string, art: Art | null) =>
 	html`<div tw="flex flex-col w-full h-full bg-[${ogColors.bg}] text-[${ogColors.body}]">
+		<div tw="${art ? "flex" : "hidden"} w-full h-[300px] items-center justify-center pt-10">
+			<img
+				src="${(art ?? NO_ART).src}"
+				width="${(art ?? NO_ART).width}"
+				height="${(art ?? NO_ART).height}"
+			/>
+		</div>
 		<div tw="flex flex-col flex-1 w-full px-16 justify-center">
-			<p tw="text-xl mb-5 text-[${ogColors.muted}]">${pubDate}</p>
-			<h1 tw="text-6xl font-bold leading-tight text-[${ogColors.title}]">${title}</h1>
+			<p tw="text-xl mb-4 text-[${ogColors.muted}]">${pubDate}</p>
+			<h1 tw="m-0 ${art ? "text-5xl" : "text-6xl"} font-bold leading-tight text-[${ogColors.title}]">
+				${title}
+			</h1>
 		</div>
 		<div
-			tw="flex items-center justify-between w-full px-16 py-10 border-t border-[${ogColors.divider}] text-xl"
+			tw="flex items-center justify-between w-full px-16 py-8 border-t border-[${ogColors.divider}] text-xl"
 		>
-			<div tw="flex items-center">
-				<img src="${siteConfig.logoUrl}" alt="" tw="w-12 h-12 rounded-full mr-4" />
-				<p tw="font-medium text-[${ogColors.body}]">${siteConfig.author}</p>
-			</div>
-			<p tw="text-[${ogColors.muted}]">${siteHost}</p>
+			<p tw="m-0 font-bold text-[${ogColors.title}]">${siteConfig.author}</p>
+			<p tw="m-0 text-[${ogColors.muted}]">${siteHost}</p>
 		</div>
 	</div>`;
 
@@ -69,14 +67,9 @@ export async function GET({ params: { slug } }: APIContext) {
 			month: "long",
 		},
 	);
-	const svg = await satori(markup(title, postDate), ogOptions);
-	const png = new Resvg(svg).render().asPng();
-	return new Response(png, {
-		headers: {
-			"Content-Type": "image/png",
-			"Cache-Control": "public, max-age=31536000, immutable",
-		},
-	});
+	const coverPath = post ? await coverFile(post.id) : null;
+	const art = coverPath ? await coverArt(coverPath, 760, 220) : null;
+	return pngResponse(await renderPng(markup(title, postDate, art)));
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
