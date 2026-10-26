@@ -1,0 +1,64 @@
+---
+title: "Agents in production: my class at UNICEN"
+description: "A detailed class on AI agents I gave at UNICEN: workflows, MCP, observability, evals, multi-agent architectures and guardrails."
+publishDate: "23 Oct 2026"
+tags: ["agents", "gen-ai", "mcp", "evals", "talks"]
+draft: false
+pinned: true
+---
+
+import TweetEmbed from "@/components/blog/TweetEmbed";
+
+*[Originally posted on X.](https://x.com/tadeodonegana/status/2113298688386662708)*
+
+I gave a class on AI agents at [UNICEN](https://www.unicen.edu.ar/), for the systems design course.
+
+<TweetEmbed id="2113298688386662708" user="tadeodonegana" label="Watch the class on X (64 min)" />
+
+> The class is in Spanish. The chapters and sources below are in English.
+
+The class goes from a single LLM call to multi-agent systems in production. I tried to explain concepts that I believe are must-haves in today's work landscape, such as observability and evals, for example. At the end I go through a real case, how we built Lumi at Tiendanube.
+
+## Chapters
+
+- `00:00` Intro and what the class covers
+- `07:32` Workflows
+- `09:13` When to use LLMs, and when not to
+- `11:17` Prompt chaining
+- `14:31` Routing
+- `17:39` Parallelization
+- `20:20` Evaluator-optimizer
+- `21:34` Limits of workflows
+- `22:42` What is an agent? Anatomy, tools and memory
+- `25:44` Tools and MCP (Model Context Protocol)
+- `34:45` Limits of agents
+- `37:32` Observability
+- `41:33` Evals
+- `46:40` Multi-agent architectures
+- `47:32` Subagents
+- `49:47` Handoffs
+- `50:13` Skills
+- `50:52` Router
+- `51:32` When to use each architecture
+- `52:11` Guardrails and middlewares
+- `55:49` Real case
+
+## Sources
+
+- [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)
+- [Jev](https://www.thoughtworks.com/insights/blog/generative-ai/jev-decision-models-what-need-know-why)
+- [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Introducing the Model Context Protocol](https://www.anthropic.com/news/model-context-protocol)
+- [AI Engineer](https://www.ai.engineer/)
+- [A2A: a new era of agent interoperability](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/)
+- [Choosing the right multi-agent architecture](https://www.langchain.com/blog/choosing-the-right-multi-agent-architecture)
+- [How we use LangChain to power Lumi for 180k+ merchants](/posts/langchain-lumi-ecommerce-copilot/)
+- [Scaling LangGraph's Postgres Checkpointer in Production](/posts/scaling-langgraph-postgres-checkpointer/)
+
+## Four takeaways
+
+1. Decide first whether the problem needs an agent at all. If it can be solved deterministically, solve it deterministically.
+2. Start with the simplest architecture that works, and add complexity only when the problem asks for it.
+3. Evaluation, observability and monitoring are the pillars. They are what separates a good agentic system from an average one.
+4. Build it so it can scale to real users in production, in a controlled way.

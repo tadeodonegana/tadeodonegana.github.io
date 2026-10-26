@@ -1,0 +1,54 @@
+---
+// Embeds a post from X, with its video player, through X's official widget.
+// Without JavaScript it stays a plain link to the post. The widget picks its
+// theme once, so it is drawn again when the site theme changes.
+interface Props {
+	id: string;
+	user: string;
+	// Fallback link text, shown before the widget loads or without JavaScript.
+	label: string;
+}
+
+const { id, user, label } = Astro.props;
+const href = `https://x.com/${user}/status/${id}`;
+---
+
+<div class="tweet-embed my-8 flex min-h-[120px] justify-center" data-tweet-embed>
+	<blockquote class="twitter-tweet" data-dnt="true" data-conversation="none" data-align="center">
+		<a href={href}>{label}</a>
+	</blockquote>
+</div>
+
+<script>
+	type Twttr = { widgets: { load: (el?: Element) => void } };
+	const w = window as unknown as { twttr?: Twttr };
+
+	const embeds = [...document.querySelectorAll<HTMLElement>("[data-tweet-embed]")];
+	// Keep the original markup, so each embed can be drawn again in a new theme.
+	const sources = embeds.map((el) => el.innerHTML);
+
+	const theme = () => (document.documentElement.classList.contains("dark") ? "dark" : "light");
+
+	const render = () => {
+		embeds.forEach((el, i) => {
+			el.innerHTML = sources[i]!;
+			el.querySelector("blockquote")?.setAttribute("data-theme", theme());
+			w.twttr?.widgets.load(el);
+		});
+	};
+
+	if (embeds.length) {
+		embeds.forEach((el) => el.querySelector("blockquote")?.setAttribute("data-theme", theme()));
+		const script = document.createElement("script");
+		script.src = "https://platform.twitter.com/widgets.js";
+		script.async = true;
+		document.head.appendChild(script);
+
+		let last = theme();
+		new MutationObserver(() => {
+			if (theme() === last) return;
+			last = theme();
+			render();
+		}).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+	}
+</script>
