@@ -1,0 +1,29 @@
+src/content/post/unicen-agents-class/index.mdx
+  h_7ebc124c02485e 1-6,8-19,21-23,45-47,58-64
+  s_76492759f2b7e7::t_9f86541a103f26 20
+  s_76492759f2b7e7::t_f019865ea11d67 7
+  s_76492759f2b7e7::t_deba6b8cbbedf8 24-44,48-57
+src/components/blog/TweetEmbed.astro
+  s_76492759f2b7e7::t_f5d6ca5213728c 1-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "18be92034059cee94d51223831bcfbaf208c23db",
+  "prompts": {},
+  "humans": {
+    "h_7ebc124c02485e": {
+      "author": "Tadeo Donegana Braunschweig <tadeo@thetaste.ai>"
+    }
+  },
+  "sessions": {
+    "s_76492759f2b7e7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b0586724-dc9a-46ca-a8cb-5c09a4a178e5",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Tadeo Donegana Braunschweig <tadeo@thetaste.ai>"
+    }
+  }
+}
